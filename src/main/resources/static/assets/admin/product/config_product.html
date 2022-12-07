@@ -1,0 +1,336 @@
+<div class="container-fluid">
+	<div class="row mt-3">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-body" ng-if="checkChange.id == null">
+					<label>Không Tìm Thấy Sản Phẩm Cần Cấu Hình</label>
+					<hr />
+				</div>
+				<div class="card-body" ng-if="checkChange.category.id == 'accessory'">
+					<label>Phụ kiện không thể cấu hình.</label>
+					<hr />
+				</div>
+				
+				<div class="card-body" ng-if=" checkChange.category.id == 'mobile'">
+					<label>Cấu Hình Điện Thoại</label>
+					<hr />
+					<div class="form-group row">	
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<div>
+								<label id="name" for="name">Tên Sản Phẩm :</label>
+								<input type="text" id="name" class="form-control" disabled ng-model="checkChange.name"
+									placeholder="Tên sản phẩm" />
+								</div>
+								 <div>
+									<label id="operatingSystem" for="operatingSystem">Hệ Điều Hành :</label>
+									<input type="text" id="operatingSystem" class="form-control" ng-model="formConfig.operatingSystem"
+										placeholder="Hệ Điều Hành" />
+								</div>
+								
+								<div>
+									<label id="ram" for="ram">RAM :</label>
+									<input type="text" id="ram" class="form-control" ng-model="formConfig.ram" placeholder="Ram" />
+								</div>
+								<div>
+									<label id="rom" for="rom">ROM :</label>
+									<input type="text" id="rom" class="form-control" ng-model="formConfig.rom" placeholder="Rom" />
+								</div>
+							
+								<div>
+									<label id="cpu">Chíp CPU :</label>
+									<input type="text" id="cpu" class="form-control" ng-model="formConfig.cpu" placeholder="CPU" />
+								</div>
+								<div>
+									<label id="camera_before" for="system">Camera Trước :</label>
+									<input type="text" id="camera_before" class="form-control" ng-model="formConfig.cameraBefore"
+										placeholder="Camera Trước :" />
+								</div>
+								<div>
+									<label id="camera_after" for="camera_after">Camera Sau :</label>
+									<input type="text" id="camera_after" class="form-control" ng-model="formConfig.cameraAfter"
+										placeholder="Hệ Điều Hành" />
+								</div> 
+							</div>
+
+							
+								
+							
+						</div>
+						<div class="col-md-6">
+							<div>
+								<label id="category">Danh Mục :</label>
+								<select id="category" class="form-control valid" disabled ng-model="checkChange.category.id"
+									aria-invalid="false" name="category">
+									<option ng-repeat="cate in cates" ng-value="cate.id">{{cate.name
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="screen">Màn Hình :</label>
+								<select id="screen" class="form-control valid" ng-model="formConfig.screen.id" aria-invalid="false"
+									name="screen">
+									<option ng-repeat="screen in screens" ng-value="screen.id">{{screen.typeScreen + screen.size + screen.sweepFrequency
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="battery">Pin :</label>
+								<select id="battery" class="form-control valid" ng-model="formConfig.batteryCharge.id" aria-invalid="false"
+									name="battery">
+									<option ng-repeat="battery in batterys" ng-value="battery.id">{{battery.batteryType + battery.batteryCapacity + battery.chargeSupport
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="connect">Kết Nối :</label>
+								<select id="connect" class="form-control valid" ng-model="formConfig.connect.id" aria-invalid="false"
+									name="connect">
+									<option ng-repeat="connect in connects" ng-value="connect.id">{{connect.support?"Hỗ Trợ 5G ":"Không Hỗ Trợ 5G " }}{{ connect.sim + connect.chargePort + connect.headphoneJack
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="utility">Tiện Ích :</label>
+								<select id="utility" class="form-control valid" ng-model="formConfig.utility.id" aria-invalid="false"
+									name="utility">
+									<option ng-repeat="utility in utilitys" ng-value="utility.id">{{utility.advanceSecurity.substr(0,100) + utility.sfecialFeature.substr(0,100)
+										}}.</option>
+								</select>
+							</div>
+							<div>
+								<label id="general">Cấu Tạo :</label>
+								<select id="general" class="form-control valid" ng-model="formConfig.generalInformation.id" aria-invalid="false"
+									name="general">
+									<option ng-repeat="general in generals" ng-value="general.id">{{ general.material+' '+ general.width+' ' + general.height+' ' +  general.thick+' ' + general.weight
+										}}</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="form-footer">
+						<button class="btn btn-success" ng-if="formConfig.id == null" ng-click="createConfigPhone()">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button class="btn btn-warning" ng-if="formConfig.id != null" ng-click="updateConfigPhone(formConfig)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button class="btn btn-danger" ng-if="formConfig.id != null" ng-click="deleteConfigPhone(formConfig)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+				
+				<div class="card-body" ng-if=" checkChange.category.id == 'tablet'">
+					<label>Cấu Hình Tablet</label>
+					<hr />
+					<div class="form-group row">	
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<div>
+								<label id="name" for="name">Tên Sản Phẩm :</label>
+								<input type="text" id="name" class="form-control" disabled ng-model="checkChange.name"
+									placeholder="Tên sản phẩm" />
+								</div>
+								 <div>
+									<label id="operatingSystem" for="operatingSystem">Hệ Điều Hành :</label>
+									<input type="text" id="operatingSystem" class="form-control" ng-model="formConfig.operatingSystem"
+										placeholder="Hệ Điều Hành" />
+								</div>
+								
+								<div>
+									<label id="ram" for="ram">RAM :</label>
+									<input type="text" id="ram" class="form-control" ng-model="formConfig.ram" placeholder="Ram" />
+								</div>
+								<div>
+									<label id="rom" for="rom">ROM :</label>
+									<input type="text" id="rom" class="form-control" ng-model="formConfig.rom" placeholder="Rom" />
+								</div>
+							
+								<div>
+									<label id="cpu">Chíp CPU :</label>
+									<input type="text" id="cpu" class="form-control" ng-model="formConfig.cpu" placeholder="CPU" />
+								</div>
+								<div>
+									<label id="camera_before" for="system">Camera Trước :</label>
+									<input type="text" id="camera_before" class="form-control" ng-model="formConfig.cameraBefore"
+										placeholder="Camera Trước :" />
+								</div>
+								<div>
+									<label id="camera_after" for="camera_after">Camera Sau :</label>
+									<input type="text" id="camera_after" class="form-control" ng-model="formConfig.cameraAfter"
+										placeholder="Hệ Điều Hành" />
+								</div> 
+							</div>
+
+							
+								
+							
+						</div>
+						<div class="col-md-6">
+							<div>
+								<label id="category">Danh Mục :</label>
+								<select id="category" class="form-control valid" disabled ng-model="checkChange.category.id"
+									aria-invalid="false" name="category">
+									<option ng-repeat="check in checkChange" ng-value="check.id">{{check.name
+										}}</option>
+								</select>
+							</div>
+							 <div>
+								<label id="screen">Màn Hình :</label>
+								<select id="screen" class="form-control valid" ng-model="formConfig.screen.id" aria-invalid="false"
+									name="screen">
+									<option ng-repeat="screen in screens" ng-value="screen.id">{{screen.typeScreen + screen.size + screen.sweepFrequency
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="battery">Pin :</label>
+								<select id="battery" class="form-control valid" ng-model="formConfig.batteryCharge.id" aria-invalid="false"
+									name="battery">
+									<option ng-repeat="battery in batterys" ng-value="battery.id">{{battery.batteryType + battery.batteryCapacity + battery.chargeSupport
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="connect">Kết Nối :</label>
+								<select id="connect" class="form-control valid" ng-model="formConfig.connect.id" aria-invalid="false"
+									name="connect">
+									<option ng-repeat="connect in connects" ng-value="connect.id">{{connect.support?"Hỗ Trợ 5G ":"Không Hỗ Trợ 5G " }}{{ connect.sim + connect.chargePort + connect.headphoneJack
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="utility">Tiện Ích :</label>
+								<select id="utility" class="form-control valid" ng-model="formConfig.utility.id" aria-invalid="false"
+									name="utility">
+									<option ng-repeat="utility in utilitys" ng-value="utility.id">{{utility.advanceSecurity.substr(0,100) + utility.sfecialFeature.substr(0,100)
+										}}.</option>
+								</select>
+							</div>
+							<div>
+								<label id="general">Khác :</label>
+								<select id="general" class="form-control valid" ng-model="formConfig.generalInformation.id" aria-invalid="false"
+									name="general">
+									<option ng-repeat="general in generals" ng-value="general.id">{{ general.material+' '+ general.width+' ' + general.height+' ' +  general.thick+' ' + general.weight
+										}}</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="form-footer">
+						<button class="btn btn-success" ng-if="formConfig.id == null" ng-click="createConfig()">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button class="btn btn-warning" ng-if="formConfig.id != null" ng-click="updateConfig(formConfig)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button class="btn btn-danger" ng-if="formConfig.id != null" ng-click="deleteConfig(formConfig)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+				<div class="card-body" ng-if=" checkChange.category.id == 'laptop'">
+					<label>Cấu Hình LapTop</label>
+					<hr />
+					<div class="form-group row">	
+
+						 <div class="col-md-6">
+							<div class="form-group">
+								<div>
+								<label id="name" for="name">Tên Sản Phẩm :</label>
+								<input type="text" id="name" class="form-control" disabled ng-model="checkChange.name"
+									placeholder="Tên sản phẩm" />
+								</div>
+								 <div>
+									<label id="operatingSystem" for="operatingSystem">Hệ Điều Hành :</label>
+									<input type="text" id="operatingSystem" class="form-control" ng-model="formConfig.operatingSystem"
+										placeholder="Hệ Điều Hành" />
+								</div>
+								
+								<div>
+									<label id="ram" for="ram">Bộ Nhớ :</label>
+									<input type="text" id="ram" class="form-control" ng-model="formConfig.hardDriver" placeholder="Ram" />
+								</div>
+								<div>
+									<label id="rom" for="rom">RAM :</label>
+									<input type="text" id="rom" class="form-control" ng-model="formConfig.maxHardDriver" placeholder="Rom" />
+								</div>
+							
+								<div>
+									<label id="cpu">Dung Lượng Pin :</label>
+									<input type="text" id="pin" class="form-control" ng-model="formConfig.pin" placeholder="pin" />
+								</div>								
+							</div>
+
+							
+								
+							
+						</div> 
+						<div class="col-md-6">
+							<div>
+								<label id="category">Danh Mục :</label>
+								<select id="category" class="form-control valid" disabled ng-model="checkChange.category.id"
+									aria-invalid="false" name="category">
+									<option ng-repeat="check in checkChange" ng-value="check.id">{{check.name
+										}}</option>
+								</select>
+							</div>
+							 <div>
+								<label id="screen">Màn Hình :</label>
+								<select id="screen" class="form-control valid" ng-model="formConfig.screen.id" aria-invalid="false"
+									name="screen">
+									<option ng-repeat="screen in screens" ng-value="screen.id">{{screen.typeScreen + screen.size + screen.sweepFrequency
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="graphicsSound">Đồ Họa :</label>
+								 <select id="graphicsSound" class="form-control valid" ng-model="formConfig.graphicsSound.id" aria-invalid="false"
+									name="graphicsSound">
+									<option ng-repeat="graphicsSound in graphicsSounds" ng-value="graphicsSound.id">{{graphicsSound.cartDesign + graphicsSound.graphicsCard
+										}}</option>
+								</select>
+							</div>
+							<div>
+								<label id="utility">Tiện Ích :</label>
+								<select id="utility" class="form-control valid" ng-model="formConfig.utility.id" aria-invalid="false"
+									name="utility">
+									<option ng-repeat="utility in utilitys" ng-value="utility.id">{{utility.advanceSecurity.substr(0,100) + utility.sfecialFeature.substr(0,100)
+										}}.</option>
+								</select>
+							</div>
+							<div>
+								<label id="general">Khác :</label>
+								<select id="general" class="form-control valid" ng-model="formConfig.generalInformation.id" aria-invalid="false"
+									name="general">
+									<option ng-repeat="general in generals" ng-value="general.id">{{ general.material+' '+ general.width+' ' + general.height+' ' +  general.thick+' ' + general.weight
+										}}</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="form-footer">
+						<button class="btn btn-success" ng-if="formConfig.id == null" ng-click="createConfigLaptop()">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button class="btn btn-warning" ng-if="formConfig.id != null" ng-click="updateConfigLaptop(formConfig)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button class="btn btn-danger" ng-if="formConfig.id != null" ng-click="deleteConfigLaptop(formConfig)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class="overlay toggle-menu"></div>
+</div>

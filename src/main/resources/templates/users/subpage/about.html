@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+		<section class="flat-about">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="image-about">
+							<img th:src="@{/assets/images/about/01.jpg}" alt="">
+						</div>
+					</div>
+					<!-- /.col-md-6 -->
+					<div class="col-md-6">
+						<div class="text-about">
+							<div class="title">
+								<h3>THÔNG TIN VỀ TECHNO SHOP</h3>
+							</div>
+							<div class="content">
+								<p>là một cửa hàng chuyên bán các mặt liên quan đến sản phẩm
+									công nghệ khá có danh tiếng tại TP Cần Thơ.</p>
+								<p>
+									Chúng tôi luôn mang đến cho khách hàng những sản phẩm cực kì
+									chất lượng, giá cả phải chăng.<span> Qua nhiều năm hình
+										thành và phát triển, Hệ thống cửa hàng TechnoShop đã bao gồm 8
+										chi nhánh kinh doanh phân bố rộng khắp tại Tp. Cần Thơ. Không
+										dừng lại đó, TechnoShop tầm nhìn trong tương lai sẽ mở thêm
+										nhiều chi nhánh tại khắp các tỉnh thành trên toàn quốc. </span>
+								</p>
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.text-about -->
+					</div>
+					<!-- /.col-md-6 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-about -->
+
+		<section class="main-blog">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<article class="main-post style4">
+							<div class="featured-post">
+								<a href="#" title=""> <img th:src="@{/assets/images/about/05.jpg}" alt="">
+								</a>
+							</div>
+							<!-- /.featured-post -->
+							<div class="divider37"></div>
+							<div class="content-post">
+								<h3 class="title-post">
+									<a href="#" title="">Dịch vụ tư vấn</a>
+								</h3>
+								<div class="entry-post">
+									<p>Chúng tôi luôn quan tâm để lòng tin của khách hàng, nên
+										chúng tôi luôn có một đội ngũ tư vấn viên 24/7.</p>
+								</div>
+							</div>
+							<!-- /.content-post -->
+						</article>
+						<!-- /.main-post style4 -->
+					</div>
+					<!-- /.col-md-4 -->
+					<div class="col-md-4">
+						<article class="main-post style4">
+							<div class="featured-post">
+								<a href="#" title=""> <img th:src="@{/assets/images/about/06.jpg}" alt="">
+								</a>
+							</div>
+							<!-- /.featured-post -->
+							<div class="divider37"></div>
+							<div class="content-post">
+								<h3 class="title-post">
+									<a href="#" title="">Không gian cửa hàng </a>
+								</h3>
+								<div class="entry-post">
+									<p>Không gian rộng rãi thoáng mát, trưng bày gọn gàng, nhân
+										viên tư vấn nhiệt tình.</p>
+								</div>
+							</div>
+							<!-- /.content-post -->
+						</article>
+						<!-- /.mai-post style4 -->
+					</div>
+					<!-- /.col-md-4 -->
+					<div class="col-md-4">
+						<article class="main-post style4">
+							<div class="featured-post">
+								<a href="#" title=""> <img th:src="@{/assets/images/about/04.jpg}" alt="">
+								</a>
+							</div>
+							<!-- /.featured -->
+							<div class="divider37"></div>
+							<div class="content-post">
+								<h3 class="title-post">
+									<a href="#" title="">QUÁ TRÌNH HÌNH THÀNH VÀ PHÁT TRIỂN</a>
+								</h3>
+								<div class="entry-post">
+									<p>Hệ thống cửa hàng TechnoShop chính thức được thành lập
+										vào năm 2018, chuyên kinh doanh các mặt hàng công nghệ, điện
+										thoại di động, laptop, tablet, và các loại phụ kiện,...</p>
+								</div>
+							</div>
+							<!-- /.content-post -->
+						</article>
+						<!-- /.main-post style4 -->
+					</div>
+					<!-- /.col-md-4 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.main-blog -->
+
+		<section class="flat-team">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title">
+							<h3>Thành viên</h3>
+						</div>
+						<div class="team-member owl-carousel-8">
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/01.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Bùi Quốc Dự</div>
+									<div class="option">CEO/Founder</div>
+								</div>
+							</div>
+							<!-- /.member -->
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/04.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Nguyễn Lý Hùng</div>
+									<div class="option">Fashion Designer</div>
+								</div>
+							</div>
+							<!-- /.member -->
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/03.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Trần Thế Kỷ</div>
+									<div class="option">Fashion Designer</div>
+								</div>
+							</div>
+							<!-- /.member -->
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/02.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Mai Trọng Nghĩa</div>
+									<div class="option">Fashion Designer</div>
+								</div>
+							</div>
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/05.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Đào Thiên Quốc</div>
+									<div class="option">Fashion Designer</div>
+								</div>
+							</div>
+							<!-- /.member -->
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/01.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Bùi Quốc Dự</div>
+									<div class="option">CEO/Founder</div>
+								</div>
+							</div>
+							<!-- /.member -->
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/04.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Nguyễn Lý Hùng</div>
+									<div class="option">Fashion Designer</div>								</div>
+							</div>
+							<!-- /.member -->
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/03.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Trần Thế Kỷ</div>
+									<div class="option">Fashion Designer</div>
+								</div>
+							</div>
+							<!-- /.member -->
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/02.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Mai Trọng Nghĩa</div>
+									<div class="option">Fashion Designer</div>
+								</div>
+							</div>
+							<div class="member">
+								<div class="image-member">
+									<img th:src="@{/assets/images/team/05.jpg}" alt="">
+								</div>
+								<div class="member-info">
+									<div class="name-member">Đào Thiên Quốc</div>
+									<div class="option">Fashion Designer</div>
+								</div>
+							</div>
+							<!-- /.member -->
+
+						</div>
+						<!-- /.team-member owl-carousel-8 -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-team -->
+
+		<section class="flat-testimonial">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title">
+							<h3>Châm ngôn sống</h3>
+						</div>
+						<div class="testimonial owl-carousel-17">
+							<div class="testimonial-item">
+								<div class="image">
+									<img th:src="@{/assets/images/team/01.jpg}" alt="">
+								</div>
+								<div class="content">
+									<div class="name">Bùi Quốc Dư</div>
+									<p>
+										Bạn chỉ sống một cuộc đời <br /> nên phải sống thật chọn vẹn.
+									</p>
+								</div>
+							</div>
+							<!-- /.testimonial-item -->
+							<div class="testimonial-item">
+								<div class="image">
+									<img th:src="@{/assets/images/team/02.jpg}" alt="">
+								</div>
+								<div class="content">
+									<div class="name">Mai Trọng Nghĩa</div>
+									<p>
+										Bạn chỉ sống một cuộc đời <br /> nên phải sống thật chọn vẹn.
+									</p>
+								</div>
+							</div>
+							<!-- /.testimonial-item -->
+							<div class="testimonial-item">
+								<div class="image">
+									<img th:src="@{/assets/images/team/04.jpg}" alt="">
+								</div>
+								<div class="content">
+									<div class="name">Nguyễn Lý Hùng</div>
+									<p>
+										Bạn chỉ sống một cuộc đời <br /> nên phải sống thật chọn vẹn.
+									</p>
+								</div>
+							</div>
+							<!-- /.testimonial-item -->
+							<div class="testimonial-item">
+								<div class="image">
+									<img th:src="@{/assets/images/team/03.jpg}" alt="">
+								</div>
+								<div class="content">
+									<div class="name">Trần Thế Kỷ</div>
+									<p>
+										Bạn chỉ sống một cuộc đời <br /> nên phải sống thật chọn vẹn.
+									</p>
+								</div>
+							</div>
+							<!-- /.testimonial-item -->
+							<div class="testimonial-item">
+								<div class="image">
+									<img th:src="@{/assets/images/team/05.jpg}" alt="">
+								</div>
+								<div class="content">
+									<div class="name">Đào Thiên Quốc</div>
+									<p>
+										Bạn chỉ sống một cuộc đời <br /> nên phải sống thật chọn vẹn.
+									</p>
+								</div>
+							</div>
+							<!-- /.testimonial-item -->
+						</div>
+						<!-- /.testimonial owl-carousel -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-testimonial -->
+
+		<section class="flat-row flat-brand style2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title">
+							<h3>Đối tác</h3>
+						</div>
+						<ul class="owl-carousel-9">
+							<li><img th:src="@{/assets/images/logos/brand2.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand5.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand7.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand2.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand7.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand2.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand2.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand5.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand7.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand2.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand7.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand2.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand6.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand3.png}" alt=""></li>
+							<li><img th:src="@{/assets/images/logos/brand4.png}" alt=""></li>
+						</ul>
+						<!-- /.owl-carousel-5 -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-brand -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

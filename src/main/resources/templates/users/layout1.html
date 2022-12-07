@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(title,view)">
+<head th:replace="users/config/css_js :: head">
+<meta charset="UTF-8">
+<title th:replace="${title}"></title>
+</head>
+<body th:replace="${view}" class="header_sticky">
+</body>
+</html>

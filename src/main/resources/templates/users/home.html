@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+ 		<!-- <div th:replace="users/loading/loading :: loading"></div> -->
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+
+		<th:block th:replace="users/slider/slider :: slider"></th:block>
+		<th:block th:replace="users/banners/banner :: banner"></th:block>
+
+		</th:block>
+		<th:block th:replace="users/optionShow/optionshow1 :: flat-imagebox"></th:block>
+		<th:block th:replace="users/optionShow/optionshow4 :: flat-imagebox4"></th:block>
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

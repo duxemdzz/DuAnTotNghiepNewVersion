@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<section class="flat-row flat-banner-box" th:fragment="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="banner-box one-half">
+						<div class="inner-box">
+							<a th:href="@{/#}" title=""> <img
+								th:src="@{/assets/images/banner_boxes/banner-iphone1.png}" alt="">
+							</a>
+						</div>
+						<!-- /.inner-box -->
+						<div class="inner-box">
+							<a th:href="@{/#}" title=""> <img
+								th:src="@{/assets/images/banner_boxes/hom-05.png}" alt="">
+							</a>
+						</div>
+						<!-- /.inner-box -->
+						<div class="clearfix"></div>
+					</div>
+					<!-- /.box -->
+					<div class="banner-box">
+						<div class="inner-box">
+							<a th:href="@{/#}" title=""> 
+							<img th:src="@{/assets/images/banner_boxes/banner-iphone.png}" alt="">
+							</a>
+						</div>
+					</div>
+					<!-- /.box -->
+				</div>
+				<!-- /.col-md-8 -->
+				<div class="col-md-4">
+					<div class="banner-box">
+						<div class="inner-box">
+							<a th:href="@{/#}" title=""> <img
+								th:src="@{/assets/images/banner_boxes/home-03.png}" alt="">
+							</a>
+						</div>
+						<!-- /.inner-box -->
+					</div>
+					<!-- /.box -->
+				</div>
+				<!-- /.col-md-4 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</section>
+	<!-- /.flat-banner-box -->
+</body>
+</html>

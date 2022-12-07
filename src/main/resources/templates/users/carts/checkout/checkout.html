@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Thanh toán</title>
+</head>
+<body class="header_sticky" ng-app="shopping-cart-app"
+	ng-controller="shopping-cart-ctrl">
+	<div th:replace="users/loading/loading :: loading"></div>
+	<div class="boxed">
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+		<section class="flat-checkout">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<h3 class="title">Thanh toán</h3>
+						<div class="box-checkout">
+							<div class="classDivBig" ng-if="userAddress.length === 0">
+								<div class="classDivBig1">
+									<br>
+									<div class="classDivBig2">
+										<i class="fas fa-map-marker-alt"></i> <span
+											style="margin-left: 10px">Thêm địa chỉ nhận hàng:</span>
+									</div>
+									<div>
+										<b class="boldColor"> {{userAddressDefault.fullname}} |
+											{{userAddressDefault.phone}}</b> <span class="boldColor">
+											{{userAddressDefault.address}}</span> <span class="statusSetDefault">mặc
+											định</span> <a data-toggle="modal" data-target="#addModal"
+											class="btnChange">Thêm địa chỉ</a>
+									</div>
+								</div>
+							</div>
+							<div class="classDivBig" ng-if="userAddress.length > 0">
+								<div class="classDivBig1">
+									<br>
+									<div class="classDivBig2">
+										<i class="fas fa-map-marker-alt"></i> <span
+											style="margin-left: 10px">Địa chỉ nhận hàng mặc định:</span>
+									</div>
+									<div>
+										<b class="boldColor"> {{userAddressDefault.fullname}} |
+											{{userAddressDefault.phone}}</b> <span class="boldColor">
+											{{userAddressDefault.address}}</span> <span class="statusSetDefault">mặc
+											định</span> <a data-toggle="modal" data-target="#ModalFather"
+											class="btnChange">Thay đổi</a>
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="fields-content">
+								<div class="field-row">
+									<label for="notes"><b>Ghi chú thêm</b></label>
+									<textarea id="notes" placeholder="Ghi chú?"
+										ng-model="order.message"></textarea>
+								</div>
+								<input ng-value="cart.amount" id="total" type="text"
+									style="visibility: hidden;" />
+							</div>
+							<div>
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">Tỉnh/Thành phố</label> <select
+									class="form-control col-md-3"
+										ng-model="selectedItem" ng-change="SelectTinhThanh(selectedItem)">
+										<option ng-repeat="t in tinhs"
+											ng-selected="selectedItem == t.ProvinceID"
+											value="{{t.ProvinceID}}">{{t.ProvinceName}}</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">Quận/huyện</label> <select
+										class="form-control col-md-3">
+										<option ng-value="t.ProvinceName" ng-repeat="t in tinhs">{{t.ProvinceName}}</option>
+									</select>
+								</div>
+							</div>
+							<!-- /.checkout -->
+						</div>
+						<!-- /.box-checkout -->
+					</div>
+
+					<!-- Modal -->
+					<div class="modal fade" id="ModalFather" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">
+										<b style="font-size: 15px">Địa Chỉ Của Tôi</b>
+									</h5>
+								</div>
+								<div class="modal-body">
+									<div ng-repeat="item in userAddress">
+										<input type="radio" id="address-change" name="radio-cash-2"
+											ng-click="ChangeUserAddress(item.id)"> <b
+											class="boldColor"> {{item.fullname}} | {{item.phone}}</b> <span
+											class="boldColor"><br> {{item.address}}</span><a
+											data-toggle="modal" data-target="#editModal"
+											class="btnChange" ng-click="editAddress(item.id)">Cập
+											nhât</a>
+									</div>
+									<br>
+									<button type="button" data-toggle="modal"
+										data-target="#addModal" style="background-color: #f28b00">Thêm
+										địa chỉ</button>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Hủy</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">Xác nhận</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">
+										<b style="font-size: 15px">Địa chỉ mới</b>
+									</h5>
+								</div>
+								<div class="modal-body">
+									<div class="fields-content">
+										<div class="field-row">
+											<label for="first-name">Họ tên *</label> <input type="text"
+												id="first-name" name="first-name"
+												ng-model="formUserAddress.fullname"
+												placeholder="Tên của bạn?">
+
+
+											<div class="clearfix"></div>
+										</div>
+										<div class="field-row">
+											<label for="phone">Số điện thoại *</label> <input type="text"
+												id="phone" name="phone" ng-model="formUserAddress.phone"
+												placeholder="Số điện thoại?">
+											<div class="clearfix"></div>
+										</div>
+
+										<div class="field-row">
+											<label for="address">Địa chỉ *</label> <input type="text"
+												ng-model="formUserAddress.address" id="address"
+												name="address" placeholder="Địa chỉ nhận hàng?">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Trở lại</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal" ng-click="AddUserAddress()">Hoàn
+										thành</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Cap nhat -->
+					<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">
+										<b style="font-size: 15px">Cập nhật địa chỉ</b>
+									</h5>
+								</div>
+								<div class="modal-body">
+									<div class="fields-content">
+										<div class="field-row">
+											<label for="first-name">Họ tên *</label> <input type="text"
+												id="first-name" name="first-name"
+												ng-model="formUserAddressEdit.fullname"
+												placeholder="Tên của bạn?">
+
+
+											<div class="clearfix"></div>
+										</div>
+										<div class="field-row">
+											<label for="phone">Số điện thoại *</label> <input type="text"
+												id="phone" name="phone" ng-model="formUserAddressEdit.phone"
+												placeholder="Số điện thoại?">
+											<div class="clearfix"></div>
+										</div>
+
+										<div class="field-row">
+											<label for="address">Địa chỉ *</label> <input type="text"
+												ng-model="formUserAddressEdit.address" id="address"
+												name="address" placeholder="Địa chỉ nhận hàng?">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Trở lại</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal" ng-click="UpdateAddress()">Hoàn
+										thành</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-md-7 -->
+					<div class="col-md-5">
+						<div class="cart-totals style2">
+							<h3>Thông tin đơn hàng của bạn</h3>
+							<form action="#" method="get" accept-charset="utf-8">
+								<table class="product">
+									<thead>
+										<tr>
+											<th>Sản phẩm</th>
+											<th>Tạm tính</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="item in cart.items">
+											<td>{{item.product.name.substr(0,20)}}... <br> <span
+												id="orange">Giảm {{item.product.discount.discount}}%
+											</span>
+											</td>
+											<td><span>{{item.quantity}}</span> x
+												{{item.product.price | number : 0}}₫</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- /.product -->
+								<table>
+									<tbody>
+										<tr>
+											<td>Tiền sản phẩm</td>
+											<td class="subtotal">{{cart.amount | number : 0}}₫</td>
+										</tr>
+										<tr>
+											<td>Tiền vận chuyển</td>
+											<td class="btn-radio">
+												<div class="radio-info">
+													<input type="radio" id="flat-rate" name="radio-flat-rate"
+														checked="checked"> <label for="flat-rate"
+														ng-if="cart.amount <= 2000000">Vận chuyển cố định:
+														<span>44.000₫</span>
+													</label> <label for="free-shipping" ng-if="cart.amount > 2000000">Miễn
+														phí vận chuyển</label>
+												</div>
+											</td>
+											<!-- /.btn-radio -->
+										</tr>
+										<tr>
+											<td>Tổng tiền</td>
+											<td class="price-total">{{cart.amount | number : 0}}₫</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="btn-radio style2">
+
+									<div class="radio-info">
+										<input type="radio" id="cash-delivery" name="radio-cash-2"
+											ng-value="1" ng-model="order.payment.id" ng-checked="true">
+										<label for="cash-delivery">Thanh toán khi nhận hàng</label>
+									</div>
+									<div class="radio-info">
+										<input type="radio" id="paypal1" name="radio-cash-2"
+											ng-value="2" ng-model="order.payment.id"> <label
+											for="paypal1">Thẻ ATM</label>
+									</div>
+									<div class="radio-info">
+										<input type="radio" id="momo" name="radio-cash-2" ng-value="3"
+											ng-model="order.payment.id"> <label for="momo">Ví
+											momo</label>
+									</div>
+								</div>
+								<!-- /.btn-radio style2 -->
+								<div class="checkbox">
+									<input type="checkbox" id="checked-order" name="checked-order"
+										checked> <label for="checked-order">Tôi đã đọc
+										và chấp nhận các điều khoản & điều kiện *</label>
+								</div>
+								<!-- /.checkbox -->
+								<div class="btn-order">
+									<a href="" class="order" title="" ng-click="order.purchase()"
+										type="submit">Đặt hàng</a>
+								</div>
+								<!-- /.btn-order -->
+							</form>
+						</div>
+						<!-- /.cart-totals style2 -->
+					</div>
+					<!-- /.col-md-5 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-checkout -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<!-- /.boxed -->
+	<th:block th:replace="users/config/css_js :: link_css">
+</body>
+</html>

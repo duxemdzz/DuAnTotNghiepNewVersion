@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="header-top" th:fragment="header-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<ul class="flat-support">
+						<li><a th:href="@{/faq}" title="">Hỗ trợ</a></li>
+						<li><a th:href="@{/order-tracking/}" title="">Theo dõi
+								đơn hàng</a></li>
+					</ul>
+					<!-- /.flat-support -->
+				</div>
+				<!-- /.col-md-4 -->
+				<div class="col-md-4">
+					<ul class="flat-infomation">
+						<li class="phone">Số điện thoại: <a
+							href="tel: (+84)945135919" title="">(+84) 945135919</a>
+						</li>
+					</ul>
+					<!-- /.flat-infomation -->
+				</div>
+				<!-- /.col-md-4 -->
+				<th:block th:unless="${#request.remoteUser}">
+					<div class="col-md-4">
+						<ul class="flat-unstyled">
+							<li class="account"><a title="Tài khoản">Tài khoản<i
+									class="fa fa-angle-down" aria-hidden="true"></i>
+							</a>
+								<ul class="unstyled">
+									<li><a th:href="@{/account/login}" title="">Đăng nhập</a></li>
+									<li><a th:href="@{/account/register}" title="">Đăng kí
+											tài khoản</a></li>
+									<li><a th:href="@{/account/forgotpassword}" title="">Quên
+											mật khẩu</a></li>
+
+								</ul> <!-- /.unstyled --></li>
+						</ul>
+						<!-- /.flat-unstyled -->
+					</div>
+				</th:block>
+				<!-- Đăng nhập rồi -->
+				<th:block th:if="${#request.remoteUser}">
+					<div class="col-md-4">
+						<ul class="flat-unstyled">
+							<li class="account"><a title="Tài khoản">Xin chào:
+									[[${#request.remoteUser}]]<i class="fa fa-angle-down"
+									aria-hidden="true"></i>
+							</a>
+								<ul class="unstyled"
+									th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}">
+									<li><a th:href="@{/admin}" title="">Trang quản
+											trị</a></li>
+									<li><a th:href="@{/account/edit}" title="">Thông tin
+											cá nhân</a></li>
+									<li><a th:href="@{/order/history}" title="">Lịch sử
+											đơn hàng</a></li>
+									<li><a th:href="@{/account/repass}" title="">Đổi mật
+											khẩu</a></li>
+									<li><a href="javascript:logout()" title="">Đăng Xuất</a></li>
+
+								</ul>
+								<ul class="unstyled"
+									th:unless="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}">
+									<li><a th:href="@{/account/edit}" title="">Thông tin
+											cá nhân</a></li>
+									<li><a th:href="@{/order/history}" title="">Lịch sử
+											đơn hàng</a></li>
+									<li><a th:href="@{/account/repass}" title="">Đổi mật
+											khẩu</a></li>
+									<li><a href="javascript:logout()" title="">Đăng Xuất</a></li>
+
+								</ul>
+						</ul>
+
+					</div>
+				</th:block>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.header-top -->
+</html>

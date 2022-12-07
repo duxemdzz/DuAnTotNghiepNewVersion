@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="header-bottom" th:fragment="header-bot">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-2">
+					<div id="mega-menu">
+						<div class="btn-mega">
+							<span></span>DANH MỤC
+						</div>
+						<ul class="menu">
+							<li th:each="cate: ${listCate}"><a
+								th:href="@{|/product/page?category=${cate.id}|}" title=""> <span
+									class="menu-img"> </span> <span class="menu-title">[[${cate.name}]]</span>
+							</a></li>
+
+						</ul>
+					</div>
+				</div>
+				<!-- /.col-md-3 -->
+				<div class="col-md-9 col-10">
+					<div class="nav-wrap">
+						<div id="mainnav" class="mainnav">
+							<ul class="menu">
+								<li class="column-1"><a th:href="@{/}" title="">Trang
+										chủ</a></li>
+								<!-- /.column-1 -->
+								<li class="column-1"><a th:href="@{/product/page}" title="">Sản
+										phẩm</a></li>
+								<!-- /.column-1 -->
+								<li class="column-1"><a th:href="@{/about}" title="">Giới
+										thiệu</a></li>
+								<!-- /.column-1 -->
+								<!-- /.has-mega-menu -->
+								<li class="column-1"><a th:href="@{/contact}" title="">Liên
+										hệ</a></li>
+								<!-- /.column-1 -->
+								<li class="column-1"><a th:href="@{/blog/list}" title="">Tin
+										tức</a></li>
+								<!-- /.column-1 -->
+								<li class="column-1"><a th:href="@{/faq}" title="">Hỏi
+										đáp</a></li>
+								<!-- /.column-1 -->
+							</ul>
+							<!-- /.menu -->
+						</div>
+						<!-- /.mainnav -->
+					</div>
+					<!-- /.nav-wrap -->
+					<div class="today-deal">
+						<a th:href="@{/security}" title="">CHÍNH SÁCH</a>
+					</div>
+					<div class="btn-menu">
+						<span></span>
+					</div>
+					<!-- //mobile menu button -->
+				</div>
+				<!-- /.col-md-9 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.header-bottom -->
+</body>
+</html>

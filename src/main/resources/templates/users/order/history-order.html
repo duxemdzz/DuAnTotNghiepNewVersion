@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<div th:replace="users/loading/loading :: loading"></div>
+		<!-- <div th:replace="users/popup/popup :: popup"></div> -->
+
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+
+		<
+		<div class="container" style="margin-bottom: 25px">
+			<br>
+
+			<h3 class="title" style="font-weight: 700">Lịch sử đơn hàng</h3>
+			<br>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="quan-li-thong-tin">
+						<li class="nav-item2 " style="list-style-type: none;"><a
+							class="nav-link collapsed" th:href="@{/account/edit}"
+							ata-toggle="collapse">
+								<div class="row">
+									<div class="col-sm-2">
+										<i class="fas fa-info-circle"></i>
+									</div>
+									<div class="col-sm-10" style="padding: 0px 15px;">
+										<span> <b>Thông tin cá nhân</b>
+											<p>Quản lý thông tin cá nhân</p>
+										</span>
+									</div>
+								</div>
+						</a></li>
+					</div>
+					<li class="nav-item2 " style="list-style-type: none;"><a
+						class="nav-link collapsed" th:href="@{/account/repass}"
+						ata-toggle="collapse">
+							<div class="row">
+								<div class="col-sm-2">
+									<i class="fas fa-key"></i>
+								</div>
+								<div class="col-sm-10" style="padding: 0px 15px;">
+									<span> <b>Thay đổi mật khẩu</b>
+										<p>Cập nhật mật khẩu mới</p>
+									</span>
+								</div>
+							</div>
+					</a></li>
+					<li class="nav-item2 active" style="list-style-type: none;"><a
+						class="nav-link collapsed" data-toggle="collapse"
+						data-target="#collapseNews" aria-expanded="true"
+						aria-controls="collapseNews">
+							<div class="row">
+								<div class="col-sm-2">
+									<i class="fas fa-shopping-cart"></i>
+								</div>
+								<div class="col-sm-10" style="padding: 0px 15px;">
+									<span> <b>Lịch sử đơn hàng</b>
+										<p>Thông tin sản phẩm đã mua</p>
+									</span>
+								</div>
+							</div>
+					</a></li>
+				</div>
+				<div class="col-sm-8">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item"><a class="nav-link active" id="home-tab"
+							data-toggle="tab" href="#home" role="tab" aria-controls="home"
+							aria-selected="true">Tất cả</a></li>
+						<li class="nav-item"><a class="nav-link" id="profile-tab"
+							data-toggle="tab" href="#profile" role="tab"
+							aria-controls="profile" aria-selected="false">Chờ xác nhận</a></li>
+						<li class="nav-item"><a class="nav-link" id="contact-tab"
+							data-toggle="tab" href="#contact" role="tab"
+							aria-controls="contact" aria-selected="false">Chờ lấy hàng</a></li>
+						<li class="nav-item"><a class="nav-link" id="contact-tab"
+							data-toggle="tab" href="#contact" role="tab"
+							aria-controls="contact" aria-selected="false">Đang giao</a></li>
+						<li class="nav-item"><a class="nav-link" id="profile-tab"
+							data-toggle="tab" href="#profile" role="tab"
+							aria-controls="profile" aria-selected="false">Đã giao</a></li>
+						<li class="nav-item"><a class="nav-link" id="contact-tab"
+							data-toggle="tab" href="#contact" role="tab"
+							aria-controls="contact" aria-selected="false">Đã hủy</a></li>
+							<li class="nav-item"><a class="nav-link" id="contact-tab"
+							data-toggle="tab" href="#contact" role="tab"
+							aria-controls="contact" aria-selected="false">Trả tiền/hoàn tiền</a></li>
+					</ul>
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="home" role="tabpanel"
+							aria-labelledby="home-tab">
+							<div class="ct1">
+								<div>
+									<h4 style="font-weight: 600; margin: 10px">Lịch sử đơn hàng</h4>
+									<hr>
+									<table class="table table-striped table-bordered table-hover"
+										id="dataTables-example">
+										<thead>
+											<tr>
+												<th>Mã đơn hàng</th>
+												<th>Ngày mua</th>
+												<th>Địa chỉ</th>
+												<th>Tổng tiền</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="order: ${orders}">
+												<td>[[${order.id}]]</td>
+												<td>[[${order.createDate}]]</td>
+												<td>[[${order.address}]]</td>
+												<td>[[${#numbers.formatDecimal(order.total,0,'COMMA',0,'POINT')}]]
+													VNĐ</td>
+												<td><a th:href="@{|/order/detail/${order.id}|}"
+													class="btn btn-sm btn-warning"> Chi tiết </a></td>
+												<td><a th:href="@{|/order/detail/${order.id}|}"
+													class="btn btn-sm btn-danger"> Hủy đơn </a></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">Chờ xác nhận</div>
+						<div class="tab-pane fade" id="contact" role="tabpanel"
+							aria-labelledby="contact-tab">Chờ lấy hàng</div>
+						<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">Đang giao</div>
+						<div class="tab-pane fade" id="contact" role="tabpanel"
+							aria-labelledby="contact-tab">Đã giao</div>
+						<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">Đã hủy</div>
+							<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">Trả tiền/Hoàn tiền</div>
+					</div>
+
+				</div>
+				<br>
+				<!-- <th:block th:unless="${#lists.size(orders) != 0}">
+			<div class="col-md-5 md-offset-2">
+				<div class="alert alert-warning"
+					style="font-weight: bold; font-size: 20px">Không có bất cứ
+					sản phẩm nào đã mua!</div>
+				<a href="/user/home" class="btn btn-danger">Mua ngay thôi!</a>
+			</div>
+			</th:block> -->
+			</div>
+		</div>
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<div class="container-fluid">
+	<div class="row mt-3">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-body">
+				<hr/>
+					<input type="file" id="image" style="visibility: hidden;"
+						onchange="angular.element(this).scope().imageChanged(this.files)" />
+				
+					<div class="form-group row">
+						<div class="col-md-8">
+							<label id="name" for="name">Tên Sản Phẩm :</label>
+							<input type="text" id="name" class="form-control" ng-model="form.name"
+								placeholder="Tên sản phẩm" />
+
+							<div>
+								<label id="category">Danh Mục :</label>
+								<select id="category" class="form-control valid" ng-model="form.category.id"
+									aria-invalid="false" name="category">
+									<option ng-repeat="c in cates" ng-value="c.id">{{c.name
+										}}</option>
+								</select>
+							</div>
+
+							<div>
+								<label id="brand">Hãng Sản Xuất :</label>
+								<select id="brand" class="form-control valid" ng-model="form.brand.id"
+									aria-invalid="false" name="brand">
+									<option ng-repeat="b in brand" ng-value="b.id">{{b.id
+										}}</option>
+								</select>
+							</div>
+
+						</div>
+						<!--  -->
+						<div class="col-md-4">
+						<div class="form-group row">
+							<br/>
+							<div class="col-md-3"></div>
+							<div class="col-md-5">
+								<label for="image"> <img alt=""
+										ng-src="{{'/TechnoShop/assets/images/product/'+form.mainImage}}" width="100px"
+										height="100px" style="float: right; object-fit: cover; border: 1px solid #fff;">
+								</label>
+							</div>
+							<div class="col-md-4"></div>
+							<div class="col-md-3">
+								<label for="image1"> <img alt=""
+										ng-src="{{'/TechnoShop/assets/images/product/'+form.image[0].name}}" width="80px"
+										height="80px" style="float: right; object-fit: cover; border: 1px solid #fff;">
+								</label>
+							</div>
+							<div class="col-md-3">
+								<label for="image1"> <img alt=""
+										ng-src="{{'/TechnoShop/assets/images/product/'+form.image[1].name}}" width="80px"
+										height="80px" style="float: right; object-fit: cover; border: 1px solid #fff;">
+								</label>
+							</div>
+							<div class="col-md-3">
+								<label for="image1"> <img alt=""
+										ng-src="{{'/TechnoShop/assets/images/product/'+form.image[2].name}}" width="80px"
+										height="80px" style="float: right; object-fit: cover; border: 1px solid #fff;">
+								</label>
+							</div>
+							
+						</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="the-date">Ngày Tạo :</label> <input type="date" class="form-control"
+									id="the-date" ng-model="form.createDate" placeholder="Ngày đăng" />
+							</div>
+							<div class="form-group">
+								<label for="price">Giá Bán :</label> <input ng-model="form.price" type="number"
+									class="form-control" id="price" placeholder="Giá > 1000" />
+							</div>
+							<div class="form-group">
+								<label for="avaliable">Trạng Thái :</label>
+								<div>
+									<select class="form-control valid" id="avaliable" ng-model="form.avaliable"
+										aria-invalid="false">
+										<option ng-value="true">Còn hàng</option>
+										<option ng-value="false">Hết hàng</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label id="discount">Giảm Giá :</label>
+								<select id="discount" class="form-control valid" ng-model="form.discount.id"
+									aria-invalid="false" name="category">
+									<option ng-repeat="d in discount" ng-value="d.id">{{d.discount
+										}}</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="content" class="col-form-label">Số Lượng :</label>
+								<div>
+									<input type="number" ng-model="form.inventory" class="form-control" rows="4"
+										required="required" id="content">
+								</div>
+							</div>
+							<div class="form-group">
+								<div>
+									<label id="tag">Nhãn :</label>
+									<select id="tag" class="form-control valid" ng-model="form.tag.id"
+										aria-invalid="false" name="tag">
+										<option ng-repeat="t in tag" ng-value="t.id">{{t.tag
+											}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-form-label">Mô Tả :</label>
+						<div>
+							<textarea ng-model="form.description" class="form-control" rows="4" required="required"
+								id="description"></textarea>
+						</div>
+					</div>
+					<div class="form-footer">
+						<button ng-if="form.id == null" class="btn btn-success" ng-click="create()">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button ng-if="form.id != null" class="btn btn-warning" ng-click="update(form)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button ng-if="form.id != null" class="btn btn-dark" ng-click="reset()"> <i class="fa fa-refresh"
+								aria-hidden="true"></i> Làm mới
+						</button>
+						<button ng-if="form.id != null" class="btn btn-danger" ng-click="delete(form)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay toggle-menu"></div>
+</div>

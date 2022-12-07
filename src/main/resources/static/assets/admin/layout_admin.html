@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin Techno Shop</title>
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="/TechnoShop/admin/plugins/fontawesome-free/css/all.min.css">
+
+
+<link rel="shortcut icon" href="/TechnoShop/admin/images/favicon.png"
+	type="image/x-icon">
+<link href="/TechnoShop/admin/assets/css/pace.min.css" rel="stylesheet" />
+<script src="/TechnoShop/admin/assets/js/pace.min.js"></script>
+<link rel="stylesheet"
+	href="/TechnoShop/admin/assets/plugins/summernote/dist/summernote-bs4.css" />
+<link
+	href="/TechnoShop/admin/assets/plugins/simplebar/css/simplebar.css"
+	rel="stylesheet" />
+<link href="/TechnoShop/admin/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="/TechnoShop/admin/assets/css/animate.css" rel="stylesheet"
+	type="text/css" />
+<link href="/TechnoShop/admin/assets/css/icons.css" rel="stylesheet"
+	type="text/css" />
+<link href="/TechnoShop/admin/assets/css/sidebar-menu.css"
+	rel="stylesheet" />
+<link href="/TechnoShop/admin/assets/css/app-style.css" rel="stylesheet" />
+<style type="text/css">
+textarea {
+	resize: vertical;
+	height: 100px !important;
+}
+</style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+	function logout() {
+			 const swalWithBootstrapButtons = Swal.mixin({
+				  customClass: {
+				    confirmButton: 'btn btn-success',
+				    cancelButton: 'btn btn-danger'
+				  },
+				  buttonsStyling: false
+				})
+
+				swalWithBootstrapButtons.fire({
+				  title: 'Bạn muốn đăng xuất phải không?',
+				  text: "Trở về về trang đăng nhập!",
+				  icon: 'question',
+				  showCancelButton: true,
+				  confirmButtonText: 'Yes',
+				  cancelButtonText: 'No',
+				  reverseButtons: true,
+				  timer: 3000
+				}).then((result) => {
+				  if (result.isConfirmed) {
+					  window.location.href = "/TechnoShop/account/logoff";
+			            Swal.fire('Đăng xuất thành công', '', 'success')
+				  }
+				})
+	}	
+
+</script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<link href="/TechnoShop/assets/css/shopping-cart-app.css"
+	rel="stylesheet">
+</head>
+
+<body class="bg-theme bg-theme9" ng-app="admin-app">
+	<!-- Loading -->
+
+	<div id="pageloader-overlay" class="visible incoming">
+		<div class="loader-wrapper-outer">
+			<div class="loader-wrapper-inner">
+				<div class="loader"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Loading -->
+	<!-- start loader -->
+	<div id="wrapper">
+		<div id="sidebar-wrapper" data-simplebar=""
+			data-simplebar-auto-hide="true">
+			<div class="brand-logo">
+				<a th:href="@{/admin/home/index}"> <img
+					th:src="@{/admin/images/favicon.png}" class="logo-icon"
+					alt="logo icon">
+					<h5 class="logo-text">Admin Techno Shop</h5>
+				</a>
+			</div>
+			<ul class="sidebar-menu do-nicescrol nav-sidebar"
+				data-widget="treeview" role="menu" data-accordion="false">
+				<li class="sidebar-header">MENU ADMIN</li>
+				<li><a href="/TechnoShop/admin"> <i
+						class="zmdi zmdi-view-dashboard"></i> <span>Tổng quan</span>
+				</a></li>
+				<th:block th:if="${#request.remoteUser}">
+					<li th:if="${#request.isUserInRole('ADMIN')}"><a
+						href="#!account"> <i class="zmdi zmdi-accounts"></i> <span>Quản
+								lí tài khoản</span>
+					</a></li>
+				</th:block>
+				<li><a href="#!category"> <i class="zmdi zmdi-grid"></i> <span>Danh
+							Mục</span>
+				</a></li>
+				<li class="nav-item do-nicescrol"><a class="nav-link"> <i
+						class="fas  fa-gear"></i> <span>Cấu Hình</span>
+				</a>
+					<ul style="display: none;" class=" nav-treeview sidebar-menu">
+						<li style="margin: 5px 0 0 20px"><a href="#!screen"> <i
+								class="fas fa-tablet"></i> <span>Màn Hình</span>
+						</a></li>
+						<li style="margin-left: 20px"><a href="#!battery"> <i
+								class="fas fa-battery-three-quarters"></i> <span>Pin</span>
+						</a></li>
+						<li style="margin-left: 20px"><a href="#!utility"> <i
+								class="fas fa-paperclip"></i> <span>Tiện Ích</span>
+						</a></li>
+						<li style="margin-left: 20px"><a href="#!connect"> <i
+								class="fas fa-sliders-h"></i> </i> <span>Kết Nối</span>
+						</a></li>
+						<li style="margin-left: 20px"><a href="#!general"> <i
+								class="fas fa-tools"></i> </i> <span>Cấu Tạo</span>
+						</a></li>
+					</ul></li>
+				<li><a href="#!product"> <i class="zmdi zmdi-widgets"></i>
+						<span>Sản Phẩm</span>
+				</a></li>
+				<li><a href="#!order"> <i class="zmdi zmdi-shopping-cart"></i>
+						<span>Đơn Hàng</span>
+				</a></li>
+				<li><a href="#!review"> <i class="zmdi zmdi-calendar-check"></i>
+						<span>Đánh giá</span>
+				</a></li>
+				<li><a href="#!new"> <i class="icon-envelope-open"></i> <span>Tin
+							tức</span>
+				</a></li>
+				<li><a href="#!report"> <i class="fa fa-bar-chart"
+						aria-hidden="true"></i> <span>Thống kê</span>
+				</a></li>
+				<th:block th:if="${#request.remoteUser}">
+					<li th:if="${#request.isUserInRole('ADMIN')}"><a
+						href="#!authorize"> <i class="zmdi zmdi-accounts"
+							aria-hidden="true"></i> <span>Phân quyền</span>
+					</a></li>
+				</th:block>
+			</ul>
+
+		</div>
+		<header class="topbar-nav">
+			<nav class="navbar navbar-expand fixed-top">
+				<ul class="navbar-nav mr-auto align-items-center">
+					<li class="nav-item"><a class="nav-link toggle-menu"
+						href="javascript:void();"> <i class="icon-menu menu-icon"></i>
+					</a></li>
+				</ul>
+				<ul class="navbar-nav align-items-center right-nav-link"
+					th:each="acc: ${account}">
+					<li class="nav-item"><a
+						class="nav-link dropdown-toggle dropdown-toggle-nocaret"
+						data-toggle="dropdown" href="#"> <span class="user-profile"><img
+								th:src="@{|/assets/images/avatar/${acc.photo}|}" class="img-circle"
+								alt="user avatar"></span>
+					</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li class="dropdown-item user-details"><a
+								href="javaScript:void();">
+									<div class="media">
+										<div class="avatar">
+											<img class="align-self-start mr-3"
+												th:src="@{|/assets/images/avatar/${acc.photo}|}" alt="user avatar">
+										</div>
+										<div class="media-body">
+											<h6 class="mt-2 user-title">Techno Shop</h6>
+											<b> Họ Tên:<span id="tkdaglg"> [[${acc.username}]]</span></b>
+											<span id="quyendaglg" style="visibility: hidden;">[[${quyen}]]</span>
+										</div>
+									</div>
+							</a></li>
+
+							<li class="dropdown-divider"></li>
+							<li class="dropdown-item"><i class="icon-power mr-2"></i><a
+								href="javascript:logout()"> Đăng xuất</a></li>
+						</ul></li>
+				</ul>
+			</nav>
+		</header>
+		<!-- //header -->
+
+		<!--Phần nạp trang-->
+		<main>
+			<p class="ng-view"></p>
+		</main>
+		<!--end Phần nạp trang-->
+
+		<!-- footer -->
+
+		<a href="javaScript:void();" class="back-to-top"><i
+			class="fa fa-angle-double-up"></i> </a>
+		<div class="right-sidebar">
+			<div class="switcher-icon">
+				<i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+			</div>
+			<div class="right-sidebar-content">
+				<p class="mb-0">Màu nền admin</p>
+				<hr>
+				<ul class="switcher">
+					<li id="theme1"></li>
+					<li id="theme2"></li>
+					<li id="theme3"></li>
+					<li id="theme4"></li>
+					<li id="theme5"></li>
+					<li id="theme6"></li>
+				</ul>
+				<p class="mb-0">Màu nền gradient</p>
+				<hr>
+				<ul class="switcher">
+					<li id="theme7"></li>
+					<li id="theme8"></li>
+					<li id="theme9"></li>
+					<li id="theme10"></li>
+					<li id="theme11"></li>
+					<li id="theme12"></li>
+					<li id="theme13"></li>
+					<li id="theme14"></li>
+					<li id="theme15"></li>
+				</ul>
+			</div>
+		</div>
+		<script src="/TechnoShop/admin/assets/js/jquery.min.js"></script>
+		<!--<script src="/TechnoShop/admin/assets/js/popper.min.js"></script>-->
+		<script src="/TechnoShop/admin/assets/js/bootstrap.min.js"></script>
+		<script
+			src="/TechnoShop/admin/assets/plugins/simplebar/js/simplebar.js"></script>
+		<script src="/TechnoShop/admin/assets/js/sidebar-menu.js"></script>
+		<!--<script src="/TechnoShop/admin/assets/js/jquery.loading-indicator.js"></script>-->
+		<script src="/TechnoShop/admin/assets/js/app-script.js"></script>
+		<script src="/TechnoShop/admin/assets/plugins/Chart.js/Chart.min.js"></script>
+		<!--	<script src="/TechnoShop/admin/assets/js/index.js"></script>-->
+		<script
+			src="/TechnoShop/admin/assets/plugins/summernote/dist/summernote-bs4.min.js"></script>
+		<script src="/TechnoShop/assets/admin/admin-app.js"></script>
+		<script src="/TechnoShop/assets/admin/authority/authority-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/product/product-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/account/account-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/category/category-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/order/order-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/new/new-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/review/review-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/report/report-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/home/home-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/screen/screen-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/utility/utility-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/general/general-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/connect/connect-ctrl.js"></script>
+		<script src="/TechnoShop/assets/admin/battery/battery-ctrl.js"></script>
+
+
+		<!-- vừa thêm -->
+		<script src="/TechnoShop/admin/plugins/jquery/jquery.min.js"></script>
+
+		<!-- jQuery UI 1.11.4 -->
+		<script src="/TechnoShop/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+		<!-- Bootstrap 4 -->
+		<script
+			src="/TechnoShop/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- ChartJS -->
+		<script src="/TechnoShop/admin/plugins/chart.js/Chart.min.js"></script>
+
+		<script src="/TechnoShop/admin/plugins/sparklines/sparkline.js"></script>
+
+		<!-- jQuery Knob Chart -->
+		<script src="/TechnoShop/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+		<!-- daterangepicker -->
+		<script src="/TechnoShop/admin/plugins/moment/moment.min.js"></script>
+		<script
+			src="/TechnoShop/admin/plugins/daterangepicker/daterangepicker.js"></script>
+		<!-- Tempusdominus Bootstrap 4 -->
+		<script
+			src="/TechnoShop/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+		<!-- Summernote -->
+		<script
+			src="/TechnoShop/admin/plugins/summernote/summernote-bs4.min.js"></script>
+		<!-- overlayScrollbars -->
+		<script
+			src="/TechnoShop/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="/TechnoShop/admin/dist/js/adminlte.js"></script>
+		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+		<script src="/TechnoShop/admin/dist/js/pages/dashboard.js"></script>
+	</div>
+</body>
+</html>

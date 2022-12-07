@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="header-middle" th:fragment="header-middle">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div id="logo" class="logo">
+						<a th:href="@{/}" title=""> <img
+							th:src="@{/assets/images/logos/logotechshop.png}" alt="">
+						</a>
+					</div>
+					<!-- /#logo -->
+				</div>
+				<!-- /.col-md-3 -->
+				<div class="col-md-6">
+					<div class="top-search">
+						<form th:action="@{/product/page}" method="get" class="form-search"
+							accept-charset="utf-8">
+							<div class="box-search">
+								<input type="text" name="keywords" placeholder="Bạn muốn tìm sản phẩm gì ?">
+								<span class="btn-search">
+									<button type="submit" class="waves-effect">
+										<img th:src="@{/assets/images/icons/search.png}" alt="">
+									</button>
+								</span>
+								<div class="search-suggestions">
+									<div class="box-suggestions">
+										<div class="title">Sản phẩm đề xuất</div>
+										<ul>
+											<li th:each="pdrandom: ${listrandom}">
+												<div class="image">
+													<a th:href="@{|/product/productdetail/${pdrandom.id}|}"
+														title=""><img
+														th:src="@{|/assets/images/product/${pdrandom.mainImage}|}"
+														alt=""></a>
+												</div>
+												<div class="info-product">
+													<div class="name">
+														<a th:href="@{|/product/productdetail/${pdrandom.id}|}"
+															title="">[[${pdrandom.name}]]</a>
+													</div>
+													<div class="price" th:if="${pdrandom.discount.discount>0}">
+														<span class="sale">[[${#numbers.formatDecimal(pdrandom.price*(1-(pdrandom.discount.discount/100)),1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pdrandom.price,1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+													</div>
+													<div class="price"
+														th:unless="${pdrandom.discount.discount>0}">
+														<span class="sale">[[${#numbers.formatDecimal(pdrandom.price,1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+													</div>
+												</div>
+											</li>
+
+										</ul>
+									</div>
+									<!-- /.box-suggestions -->
+								</div>
+								<!-- /.search-suggestions -->
+							</div>
+							<!-- /.box-search -->
+						</form>
+						<!-- /.form-search -->
+					</div>
+					<!-- /.top-search -->
+				</div>
+				<!-- /.col-md-6 -->
+				<div class="col-md-3">
+					<div class="box-cart">
+						<div class="inner-box">
+							<ul class="menu-compare-wishlist">
+								<li class="compare"><a th:href="@{/product/compare}"
+									title=""> <img th:src="@{/assets/images/icons/compare.png}"
+										alt="">
+								</a></li>
+								<li class="wishlist"><a th:href="@{/product/wishlist}"
+									title=""> <img
+										th:src="@{/assets/images/icons/wishlist.png}" alt="">
+								</a></li>
+							</ul>
+							<!-- /.menu-compare-wishlist -->
+						</div>
+						<!-- /.inner-box -->
+						<div class="inner-box">
+							<a ng-click="cart.CheckQuantityByCartDetail()" title="">
+								<div class="icon-cart">
+									<img th:src="@{/assets/images/icons/cart.png}" alt=""> <span>{{cart.count}}</span>
+								</div>
+							</a>
+							<div class="dropdown-box">
+								<ul style="height: 200px; overflow-y: auto;">
+									<li ng-repeat="item in cart.items">
+										<div class="img-product">
+											<img
+												ng:src="/TechnoShop/assets/images/product/{{item.product.mainImage}}"
+												alt="">
+										</div>
+										<div class="info-product">
+											<div class="name">{{item.product.name}}</div>
+											<div class="price">
+												<span>{{item.quantity}} x</span> <span>{{item.product.price
+													| number : 0}}₫</span>
+											</div>
+										</div>
+										<div class="clearfix"></div> <span class="delete"
+										ng-click="cart.removeCartItem(item.id)">x</span>
+									</li>
+								</ul>
+								<div class="total">
+									<span>Tổng tiền:</span> <span class="price">{{cart.amount
+										| number : 0}}₫</span>
+								</div>
+								<div class="btn-cart">
+									<a ng-click="cart.CheckQuantityByCartDetail()"
+										class="view-cart" title="">Giỏ hàng</a> <a
+										ng-click="cart.CheckQuantityByCheckout()" class="check-out"
+										title="">Thanh toán</a>
+								</div>
+							</div>
+						</div>
+						<!-- /.inner-box -->
+					</div>
+					<!-- /.box-cart -->
+				</div>
+				<!-- /.col-md-3 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.header-middle -->
+</body>
+</html>

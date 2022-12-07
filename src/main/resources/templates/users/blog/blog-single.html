@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Chi tiết bản tin</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+
+		<section class="main-blog">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-lg-9">
+						<div class="post-wrap">
+							<article class="main-post single">
+								<div class="featured-post">
+									<a href="#" title=""> <img
+										th:src="@{|/assets/images/product/${blog.product.mainImage}|}"
+										style="width: 50%"
+										alt="">
+									</a>
+								</div>
+								<!-- /.featured-post -->
+								<div class="divider25"></div>
+								<div class="content-post">
+									<h3 class="title-post">
+										<a href="#" title="">[[${blog.title}]]</a>
+									</h3>
+									<ul class="meta-post">
+										<li class="comment"><a href="#" title="">
+												[[${blog.users.lastName+' '+blog.users.firstName}]] </a></li>
+										<li class="date"><a href="#" title="">
+												[[${blog.createDate}]] </a></li>
+									</ul>
+									<!-- /.meta-post -->
+									<div class="entry-post">
+										<p>[[${blog.contents}]]</p>
+
+									</div>
+									<!-- /.entry-post -->
+									<div class="social-single">
+										<span>SHARE</span>
+										<ul class="social-list style2">
+											<li><a href="#" title=""> <i class="fa fa-facebook"
+													aria-hidden="true"></i>
+											</a></li>
+											<li><a href="#" title=""> <i class="fa fa-twitter"
+													aria-hidden="true"></i>
+											</a></li>
+											<li><a href="#" title=""> <i class="fa fa-instagram"
+													aria-hidden="true"></i>
+											</a></li>
+											<li><a href="#" title=""> <i class="fa fa-pinterest"
+													aria-hidden="true"></i>
+											</a></li>
+											<li><a href="#" title=""> <i class="fa fa-dribbble"
+													aria-hidden="true"></i>
+											</a></li>
+											<li><a href="#" title=""> <i class="fa fa-google"
+													aria-hidden="true"></i>
+											</a></li>
+										</ul>
+									</div>
+									<!-- /.social-single -->
+								</div>
+								<!-- /.content-post -->
+							</article>
+							<!-- /.main-post single -->
+						</div>
+						<!-- /.post-wrap -->
+					</div>
+					<!-- /.col-md-8 col-lg-9 -->
+					<div class="col-md-4 col-lg-3" style="height: 800px; overflow-y: scroll;">
+						<div class="sidebar left">
+							<div class="widget widget-search">
+								<form action="#" method="get" accept-charset="utf-8">
+									<input type="text" name="widget-search"
+										placeholder="Tìm kiếm tin tức">
+								</form>
+							</div>
+							<div class="widget widget-products">
+								<div class="widget-title">
+									<h3>Tin tức liên quan</h3>
+								</div>
+								<ul class="product-list">
+									<li th:each="blog: ${blogList1}">
+										<div class="img-product">
+											<a th:href="@{|/blog/detail/${blog.id}|}" title=""> <img
+												th:src="@{|/assets/images/product/${blog.product.mainImage}|}"
+												alt="" style="height: 100px">
+											</a>
+										</div>
+										<div class="info-product">
+											<div class="name"
+												style="-webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; display: -webkit-box;">
+												<a th:href="@{|/blog/detail/${blog.id}|}" title=""><b>[[${blog.title}]]</b>
+												</a>
+											</div>
+											<div class="name"
+												style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; display: -webkit-box;">
+												<a href="#" title="">[[${blog.contents}]] </a>
+											</div>
+										</div>
+									</li>
+
+								</ul>
+							</div>
+							<!-- /.widget widget-products -->
+							<div class="widget widget-tags">
+								<div class="widget-title">
+									<h3>Loại danh mục</h3>
+								</div>
+								<ul class="tag-list">
+									<li th:each="cate: ${listCate}"><a href="#"
+										class="waves-effect waves-teal" title="">[[${cate.name}]]</a>
+									</li>
+
+								</ul>
+							</div>
+							<!-- /.widget widget-tags -->
+						</div>
+						<!-- /.sidebar left -->
+					</div>
+					<!-- /.col-md-4 col-lg-3 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.main-blog -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

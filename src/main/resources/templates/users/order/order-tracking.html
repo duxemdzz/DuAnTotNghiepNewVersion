@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<div th:replace="users/loading/loading :: loading"></div>
+		<!-- <div th:replace="users/popup/popup :: popup"></div> -->
+
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+
+		<section class="flat-tracking background">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="order-tracking">
+							<div class="title">
+								<h3>Track Your Order</h3>
+								<p class="subscibe">
+									Duis aute irure dolor in reprehenderit in voluptate velit esse
+									cillum dolore eu fugiat nulla pariatur. <br />Excepteur sint
+									occaecat cupidatat non proident.
+								</p>
+							</div>
+							<!-- /.title -->
+							<div class="tracking-content">
+								<form action="#" method="get" accept-charset="utf-8">
+									<div class="one-half order-id">
+										<label for="order-id">Order ID</label> <input type="text"
+											id="order-id" name="order-id"
+											placeholder="Found your order confirmation email">
+									</div>
+									<!-- /.one-half order-id -->
+									<div class="one-half billing">
+										<label for="billing">Billing Email</label> <input type="text"
+											id="billing" name="billing"
+											placeholder="Found your order confirmation email">
+									</div>
+									<!-- /.one-half billing -->
+									<div class="btn-track">
+										<button type="submit">Track</button>
+									</div>
+									<!-- /.container -->
+								</form>
+								<!-- /.form -->
+							</div>
+							<!-- /.tracking-content -->
+						</div>
+						<!-- /.order-tracking -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-tracking -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

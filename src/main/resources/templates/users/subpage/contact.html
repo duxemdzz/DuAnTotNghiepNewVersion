@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+		<section class="flat-map">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div id="flat-map" class="pdmap">
+							<div class="flat-maps"
+								data-address="17872 US-90, Greenville, FL 32331"
+								data-height="444" data-/assets/images="/assets/images/icons/map.png}"
+								data-name="Themesflat Map"></div>
+							<div class="gm-map">
+								<div class="map"></div>
+							</div>
+						</div>
+						<!-- /#flat-map -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /#flat-map -->
+		<section class="flat-iconbox style4">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-3">
+						<div class="iconbox style2">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/address.png}" alt="">
+								</div>
+								<div class="title">
+									<h3>Địa chỉ</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<p>Địa chỉ: Số 288, Nguyễn Văn Linh, phường An Khánh, quận
+									Ninh Kiều, Tp. Cần Thơ..</p>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox style2 -->
+					</div>
+					<!-- /.col-md-6 col-lg-3 -->
+					<div class="col-md-6 col-lg-3">
+						<div class="iconbox style2">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/phone.png}" alt="">
+								</div>
+								<div class="title">
+									<h3>Số điện thoại</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<p>(+84) 945 135 919</p>
+								<p>(+84) 59 199 440</p>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox style2 -->
+					</div>
+					<!-- /.col-md-6 col-lg-3 -->
+					<div class="col-md-6 col-lg-3">
+						<div class="iconbox style2">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/mail-2.png}" alt="">
+								</div>
+								<div class="title">
+									<h3>Email</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<p>dubqpc0267@fpt.edu.vn</p>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox style2 -->
+					</div>
+					<!-- /.col-md-6 col-lg-3 -->
+					<div class="col-md-6 col-lg-3">
+						<div class="iconbox style2">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/share.png}" alt="">
+								</div>
+								<div class="title">
+									<h3>Theo dõi chúng tôi</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<ul class="social-list style2">
+									<li><a href="#" title=""> <i class="fa fa-facebook"
+											aria-hidden="true"></i>
+									</a></li>
+									<li><a href="#" title=""> <i class="fa fa-twitter"
+											aria-hidden="true"></i>
+									</a></li>
+									<li><a href="#" title=""> <i class="fa fa-instagram"
+											aria-hidden="true"></i>
+									</a></li>
+									<li><a href="#" title=""> <i class="fa fa-pinterest"
+											aria-hidden="true"></i>
+									</a></li>
+									<li><a href="#" title=""> <i class="fa fa-dribbble"
+											aria-hidden="true"></i>
+									</a></li>
+									<li><a href="#" title=""> <i class="fa fa-google"
+											aria-hidden="true"></i>
+									</a></li>
+								</ul>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox style2 -->
+					</div>
+					<!-- /.col-md-6 col-lg-3 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-iconbox style4 -->
+
+		<section class="flat-contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-8 col-md-12">
+						<div class="form-contact center">
+							<div class="form-contact-header">
+								<h3>Gủi góp ý cho chúng tôi</h3>
+								<p>Mọi đóng góp của bạn sẽ giúp chúng tôi cải thiện hơn để
+									mang đến chất lượng tốt hơn</p>
+							</div>
+							<!-- /.form-contact-header -->
+							<div class="form-contact-content">
+								<form action="#" method="get" id="form-contact"
+									accept-charset="utf-8">
+									<div class="form-box one-half name-contact">
+										<label for="name-contact">Tên*</label> <input type="text"
+											id="name-contact" name="username-contact" placeholder="Tên của bạn?">
+									</div>
+									<div class="form-box one-half password-contact">
+										<label for="password-contact">Họ*</label> <input type="text"
+											id="password-contact" name="password-contact"
+											placeholder="Họ của bạn?">
+									</div>
+									<div class="form-box">
+										<label for="subject-contact">Chủ đề</label> <input type="text"
+											id="subject-contact" name="subject-contact"
+											placeholder="Chủ đề của bạn?">
+									</div>
+									<div class="form-box">
+										<label for="comment-contact">Nội dung</label>
+										<textarea id="comment-contact"></textarea>
+									</div>
+									<div class="form-box">
+										<button type="submit" class="contact">Gửi</button>
+									</div>
+								</form>
+							</div>
+							<!-- /.form-contact-content -->
+						</div>
+						<!-- /.form-contact center -->
+					</div>
+					<!-- /.col-lg-8 col-md-12 -->
+					<div class="col-lg-2"></div>
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-contact -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

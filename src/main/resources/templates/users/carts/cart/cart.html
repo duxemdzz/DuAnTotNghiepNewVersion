@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Giỏ hàng</title>
+</head>
+<body class="header_sticky" ng-app="shopping-cart-app"
+	ng-controller="shopping-cart-ctrl">
+	<div th:replace="users/loading/loading :: loading"></div>
+	<div class="boxed">
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+
+		<section class="flat-shop-cart">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="flat-row-title style1">
+							<h3>Giỏ hàng</h3>
+						</div>
+						<div class="table-cart">
+							<table>
+								<thead>
+									<tr>
+										<th>Sản phẩm</th>
+										<th>Số lượng</th>
+										<th>Thành tiền</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in cart.items">
+										<td>
+											<div class="img-product">
+												<a
+													ng-href="/TechnoShop/product/productdetail/{{item.product.id}}">
+													<img
+													ng-src="/TechnoShop/assets/images/product/{{item.product.mainImage}}"
+													alt="">
+												</a>
+											</div>
+											<div class="name-product">
+												<a
+													ng-href="/TechnoShop/product/productdetail/{{item.product.id}}"
+													class="name-product-responsive"> {{item.product.name}}
+													<br>
+												</a> <span style="color: orange;">Giảm
+													{{item.product.discount.discount}}% </span>
+											</div>
+											<div class="price">{{item.product.price | number : 0}}₫</div>
+											<div class="clearfix"></div>
+										</td>
+										<td>
+											<div class="quanlity">
+												<span class="btn-down"
+													ng-click="cart.decreaseQuantityByCartItem(item.product.id)"></span>
+												<input type="text" ng-model="item.quantity"
+													readonly="readonly" placeholder="Quanlity"> <span
+													class="btn-up"
+													ng-click="cart.incrementQuantityByCartItem(item.product.id)"></span>
+											</div>
+										</td>
+										<td>
+											<div class="total">{{item.quantity*(item.product.price*(1-(item.product.discount.discount/100)))
+												| number : 0}}₫</div>
+										</td>
+										<td><a title=""> <img id="Garbage"
+												th:src="@{/assets/images/icons/delete.png}" alt=""
+												ng-click="cart.removeCartItem(item.id)">
+										</a></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-cart -->
+					</div>
+					<!-- /.col-lg-8 -->
+					<div class="col-lg-4">
+						<div class="cart-totals">
+							<h3>Thông tin giỏ hàng</h3>
+							<form action="#" method="get" accept-charset="utf-8">
+								<table>
+									<tbody>
+										<tr>
+											<td>Tạm tính</td>
+											<td class="subtotal">{{cart.amount | number : 0}}₫</td>
+										</tr>
+										<tr>
+											<td>Phí vận chuyển</td>
+											<td class="subtotal">0</td>
+											<!-- /.btn-radio -->
+										</tr>
+										<tr>
+											<td>VAT</td>
+											<td class="subtotal">0</td>
+											<!-- /.btn-radio -->
+										</tr>
+										<tr>
+											<td>Tổng tiền</td>
+											<td class="price-total">{{cart.amount | number : 0}}₫</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="btn-cart-totals">
+									<a class="update" title=""
+										ng-click="cart.clearCartItemByCartId()" id="Garbage">Xóa
+										sạch giỏ hàng</a> <a ng-click="cart.CheckQuantityByCheckout()"
+										class="checkout" title="">Tiến hành thanh toán</a>
+								</div>
+								<!-- /.btn-cart-totals -->
+							</form>
+							<!-- /form -->
+						</div>
+						<!-- /.cart-totals -->
+					</div>
+					<!-- /.col-lg-4 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-shop-cart -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<!-- /.boxed -->
+	<th:block th:replace="users/config/css_js :: link_css">
+</body>
+</html>

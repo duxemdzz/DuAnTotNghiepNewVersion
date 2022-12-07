@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Sản phẩm yêu thích</title>
+</head>
+<body class="header_sticky" ng-app="shopping-cart-app"
+	ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<div th:replace="users/loading/loading :: loading"></div>
+		<div class="boxed">
+			<section id="header" class="header">
+				<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+				<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+				<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+			</section>
+			<!-- /#header -->
+		</div>
+		<section class="flat-wishlist">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="wishlist">
+							<div class="title">
+								<h3>Sản phẩm yêu thích</h3>
+							</div>
+							<div class="wishlist-content">
+								<table class="table-wishlist">
+									<thead>
+										<tr>
+											<th class="nameProduct">Tên sản phẩm</th>
+											<th>Đơn giá</th>
+											<th>Tình trạng sản phẩm</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="wl: ${listwl}">
+											<td>
+												<div class="delete">
+													<a href="#" title=""><img
+														th:src="@{/assets/images/icons/delete.png}" alt=""></a>
+												</div>
+												<div class="product">
+													<div class="image">
+														<a th:href="@{|/product/productdetail/${wl.product.id}|}" title="">
+															<img
+															th:src="@{|/assets/images/product/${wl.product.mainImage}|}"
+															alt="">
+														</a>
+													</div>
+													<div class="name">[[${wl.product.name}]]</div>
+												</div>
+											</td>
+											<td>
+												<div class="price"
+													th:if="${wl.product.discount.discount > 0}">[[${#numbers.formatDecimal(wl.product.price*(1-(wl.product.discount.discount/100)),1,
+													'DEFAULT', 0, 'DEFAULT')}]]đ</div>
+												<div class="price"
+													th:unless="${wl.product.discount.discount > 0}">[[${#numbers.formatDecimal(wl.product.price,1,
+													'DEFAULT', 0, 'DEFAULT')}]]đ</div>
+											</td>
+											<td>
+												<div class="status-product-success"
+													th:if="${wl.product.avaliable}">
+													<span>Còn hàng</span>
+												</div>
+												<div class="status-product"
+													th:unless="${wl.product.avaliable}">
+													<span>Hết hàng</span>
+												</div>
+											</td>
+											<td>
+												<div class="add-cart" th:if="${wl.product.avaliable}">
+													<a href="#" title=""> <img
+														th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+														giỏ hàng
+													</a>
+												</div>
+												<div class="add-cart" th:unless="${wl.product.avaliable}">
+													<a href="#" title=""> <img
+														th:src="@{/assets/images/icons/delete.png}" alt="">Xóa khỏi
+														đây
+													</a>
+												</div>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+								<!-- /.table-wishlist -->
+							</div>
+							<!-- /.wishlist-content -->
+						</div>
+						<!-- /.wishlist -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-wishlish -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<!-- /.boxed -->
+	<th:block th:replace="users/config/css_js :: link_css">
+</body>
+</html>

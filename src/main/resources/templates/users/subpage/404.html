@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<div th:replace="users/loading/loading :: loading"></div>
+		<!-- <div th:replace="users/popup/popup :: popup"></div> -->
+
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+		<section class="flat-error">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2"></div>
+					<!-- /.col-md-2 -->
+					<div class="col-md-8">
+						<div class="wrap-error center">
+							<div class="header-error">
+								<img th:src="@{/assets/images/banner_boxes/error.png}" alt="">
+								<h1>Xin lỗi nhưng chúng tôi không thể tìm thấy trang bạn đang tìm kiếm.</h1>
+								<p>Vui lòng kiểm tra để đảm bảo rằng bạn đã nhập đúng URL. Có thể thử tìm kiếm?</p>
+							</div>
+							<!-- /.header-error -->
+							<div class="content-error">
+								<div class="form-search-error">
+									<form action="#" method="get" accept-charset="utf-8">
+										<div class="search-input">
+											<input type="text" name="search" placeholder="Tìm kiếm?">
+											<button type="submit">Tìm kiếm</button>
+										</div>
+									</form>
+								</div>
+								<!-- /.form-search-error -->
+							</div>
+							<!-- /.content-error -->
+						</div>
+						<!-- /.wrap-error -->
+					</div>
+					<!-- /.col-md-8 -->
+					<div class="col-md-2"></div>
+					<!-- /.col-md-2 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-error -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

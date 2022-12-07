@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>So sánh sản phẩm</title>
+</head>
+<body class="header_sticky" ng-app="shopping-cart-app"
+	ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<div class="boxed">
+			<section id="header" class="header">
+				<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+				<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+				<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+			</section>
+			<!-- /#header -->
+		</div>
+
+		<section class="flat-compare">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="wrap-compare">
+							<div class="title">
+								<h3>So sánh sản phẩm</h3>
+								<button type="button" data-toggle="modal"
+									th:unless="${phone.size == 3 or laptop.size == 3}"
+									data-target="#addConfigModal" style="background-color: #f28b00">Thêm
+									sản phẩm</button>
+							</div>
+							<div>
+								<span th:unless="${phone.size != 0 or laptop.size != 0}"
+									class="message-account"> Chưa thêm sản phẩm nào để so
+									sánh! </span>
+							</div>
+							<div class="compare-content"
+								th:if="${phone.size != 0 or laptop.size != 0}">
+								<table class="table-compare">
+									<thead>
+										<tr>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>Sản phẩm</th>
+											<td class="product"
+												th:each="item:${phone.size != 0 ? phone : laptop }">
+												<div class="image">
+													<img
+														th:src="@{|/assets/images/product/${item.product.mainImage}|}"
+														alt=""
+														style="height: 200px !important; object-fit: cover;">
+												</div>
+												<div class="name">[[${item.product.name}]]</div>
+											</td>
+											<!-- /.product -->
+
+										</tr>
+										<tr>
+											<th>Giá</th>
+											<td class="price"
+												th:each="item:${phone.size != 0 ? phone : laptop}">[[${#numbers.formatDecimal(item.product.price*(1-(item.product.discount.discount/100)),1,
+												'DEFAULT', 0, 'DEFAULT')}]]₫</td>
+										</tr>
+										<tr>
+											<th>Thêm giỏ hàng</th>
+											<td th:each="item:${phone.size != 0 ? phone : laptop}"
+												th:unless="${item.product.avaliable}"></td>
+											<td class="add-cart"
+												th:each="item:${phone.size != 0 ? phone : laptop}"
+												th:if="${item.product.avaliable}"
+												th:attr="ng-click=@{|cart.addCartItem(${item.product.id})|}"><a
+												title=""><img
+													th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+													giỏ hàng</a></td>
+
+											<!-- /.add-cart -->
+										</tr>
+										<tr>
+											<th>Mô tả sản phẩm</th>
+											<td class="description"
+												th:each="item:${phone.size != 0 ? phone : laptop}">
+												<p>[[${item.product.description}]]</p>
+											</td>
+											<!-- /.description -->
+										</tr>
+										<tr>
+											<th>Trạng thái</th>
+											<td class="stock"
+												th:each="item:${phone.size != 0 ? phone : laptop}">
+												<div class="status-product"
+													th:if="${item.product.avaliable}">
+													<span class="btn btn-success">Còn hàng</span>
+												</div>
+												<div class="btn btn-danger"
+													th:unless="${item.product.avaliable}">
+													<span>Hết hàng</span>
+												</div>
+
+											</td>
+											<!-- /.stock -->
+										</tr>
+										<tr>
+											<th>Xóa</th>
+											<td class="delete"
+												th:each="item:${phone.size != 0 ? phone : laptop}"><a
+												th:href="@{|/product/config/delete/laptop/${item.id}|}"
+												title="" th:if="${item.product.category.id =='laptop'}">
+													<img th:src="@{/assets/images/icons/delete.png}" alt="">
+											</a> <a th:href="@{|/product/config/delete/${item.id}|}" title=""
+												th:unless="${item.product.category.id =='laptop'}"> <img
+													th:src="@{/assets/images/icons/delete.png}" alt="">
+											</a></td>
+											<!-- /.delete -->
+										</tr>
+									</tbody>
+								</table>
+								<!-- /.table-compare -->
+							</div>
+							<!-- /.compare-content -->
+						</div>
+						<!-- /.wrap-compare -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+			<!-- modal -->
+			<div class="modal fade" id="addConfigModal" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">
+								<b style="font-size: 15px">Chọn sản phẩm so sánh</b>
+							</h5>
+						</div>
+						<div class="modal-body">
+							<div class="search-suggestions">
+								<div class="box-suggestions">
+									<div class="title">Sản phẩm đề xuất</div>
+									<div>
+										<div th:each="pdrandom: ${listrandom}" style="width: 100%">
+											<div>
+												<div class="image">
+													<a th:href="@{|/product/productdetail/${pdrandom.id}|}"
+														title=""><img
+														th:src="@{|/assets/images/product/${pdrandom.mainImage}|}"
+														alt=""></a>
+												</div>
+												<div class="info-product">
+													<div class="name">
+														<a th:href="@{|/product/productdetail/${pdrandom.id}|}"
+															title="">[[${pdrandom.name}]]</a>
+													</div>
+													<div class="price" th:if="${pdrandom.discount.discount>0}">
+														<span class="sale">[[${#numbers.formatDecimal(pdrandom.price*(1-(pdrandom.discount.discount/100)),1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pdrandom.price,1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+													</div>
+													<div class="price"
+														th:unless="${pdrandom.discount.discount>0}">
+														<span class="sale">[[${#numbers.formatDecimal(pdrandom.price,1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+													</div>
+												</div>
+											</div>
+											<div class="addConfigCompare">
+												<a th:unless="${phone.size == 3 or laptop.size == 3}"
+													class="addConfigCompare-text"
+													th:href="@{|/product/config/add/${pdrandom.id}|}">Thêm
+													sản phẩm</a>
+											</div>
+											<br>
+											<hr>
+
+										</div>
+									</div>
+								</div>
+								<!-- /.box-suggestions -->
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Trở lại</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<input id="message_success" th:value="${param.message}" type="hidden">
+		<!-- /.flat-compare -->
+		<script type="text/javascript">
+			var message_success = document.getElementById('message_success').value
+			if (message_success) {
+				Swal.fire({
+					icon : 'success',
+					title : message_success,
+					type : 'success',
+					timer : 3000
+				})
+			}
+		</script>
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<!-- /.boxed -->
+
+	<th:block th:replace="users/config/css_js :: link_css">
+</body>
+</html>

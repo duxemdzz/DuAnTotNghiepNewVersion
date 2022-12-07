@@ -1,0 +1,76 @@
+<div class="container-fluid">
+	<div class="row mt-3">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-body">
+				
+					<div class="form-group row">
+						<div class="col-md-6">
+							<label id="name" for="name">Thể Tích:</label>
+							<input type="text" id="name" class="form-control" ng-model="form.design"
+								placeholder="Tên sản phẩm" />
+
+							
+						</div>
+						<!--  -->
+						<div class="col-md-6">
+							<div>
+								<label id="category">Danh Mục :</label>
+								<select id="category" class="form-control valid" ng-model="form.category.id"
+									aria-invalid="false" name="category">
+									<option ng-repeat="c in cates" ng-value="c.id">{{c.name
+										}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							
+							<div class="form-group">
+								<label for="price">Vỏ Ngoài :</label> <input ng-model="form.material" type="text"
+									class="form-control" id="price" placeholder="kim loại" />
+							</div>
+							<div class="form-group">
+								<label for="price">Chiều Rộng :</label> <input ng-model="form.width" type="text"
+									class="form-control" id="price" placeholder="cm" />
+							</div>
+							<div class="form-group">
+								<label for="price">Chiều Cao :</label> <input ng-model="form.height" type="text"
+									class="form-control" id="price" placeholder="cm" />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="price">Độ Dày :</label> <input ng-model="form.thick" type="text"
+									class="form-control" id="price" placeholder="mm" />
+							</div>
+							<div class="form-group">
+								<label for="price">Trọng Lượng :</label> <input ng-model="form.weight" type="text"
+									class="form-control" id="price" placeholder="kg" />
+							</div>
+							<div class="form-group">
+								<label for="the-date">Ngày Tạo :</label> <input ng-model="form.launchDate" type="date"
+									class="form-control" id="the-date" placeholder="" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-footer">
+						<button ng-if="form.id == null" class="btn btn-success" ng-click="create()">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button ng-if="form.id != null" class="btn btn-warning" ng-click="update(form)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button ng-if="form.id != null" class="btn btn-dark" ng-click="reset()"> <i class="fa fa-refresh"
+								aria-hidden="true"></i> Làm mới
+						</button>
+						<button ng-if="form.id != null" class="btn btn-danger" ng-click="delete(form)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay toggle-menu"></div>
+</div>

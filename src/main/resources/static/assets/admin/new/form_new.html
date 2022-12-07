@@ -1,0 +1,60 @@
+<div class="container-fluid">
+	<div class="row mt-3">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-body">
+					<hr>
+					<div class="form-group">
+						<label for="username" >Người đăng</label> <input
+							ng-model="form.user.username" type="text" class="form-control" id="username"
+							placeholder="Người đăng" name="username"
+							required disabled="disabled"/> <br>
+					</div>
+						<div class="form-group">
+						<label
+									id="product" >Sản phẩm</label>
+								<div>
+									<select id="product" class="form-control valid"
+										ng-model="form.product.name" aria-invalid="false"
+										name="product">
+										<option ng-repeat="p in prod" ng-value="p.name">{{p.name}}</option>
+									</select>
+								</div>
+					</div>
+					<div class="form-group">
+						<label for="title" >Tên tiêu đề</label> <input
+							ng-model="form.title" type="text" class="form-control" id="title"
+							placeholder="Nhập tên tiêu đề" name="cate-name"
+							required/> <br>
+					</div>
+				
+				   <div class="form-group">
+							<label for="contents" class="col-form-label">Nội dung</label>
+							<div>
+								<textarea ng-model="form.contents" class="form-control" rows="4"
+									required id="contents" placeholder="Nhập nội dung tin tức"></textarea>
+							</div>
+						</div>
+				
+					<div class="form-footer">
+						<button class="btn btn-success" ng-click="create()">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						
+							<button class="btn btn-dark" ng-click="reset()">
+							<i class="fa fa-refresh" aria-hidden="true"></i> Làm mới
+						</button>
+						
+						<button class="btn btn-warning" ng-click="update(form)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+					
+						<button class="btn btn-danger" ng-click="delete(form)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

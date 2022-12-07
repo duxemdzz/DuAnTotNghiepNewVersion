@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<th:block th:fragment="footer">
+		<section class="flat-iconbox">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="iconbox">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/car.png}" alt="">
+								</div>
+								<div class="box-title">
+									<h3>Giao hàng trên toàn quốc</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<p>Giao hàng miễn phí khi đặt hàng trên 2 triệu</p>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox -->
+					</div>
+					<!-- /.col-md-3 col-sm-6 -->
+					<div class="col-md-3 col-sm-6">
+						<div class="iconbox">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/order.png}" alt="">
+								</div>
+								<div class="box-title">
+									<h3>Đặt dịch vụ trực tuyến</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<p>Đổi trả sản phẩm miễn phí trong 30 ngày</p>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox -->
+					</div>
+					<!-- /.col-md-3 col-sm-6 -->
+					<div class="col-md-3 col-sm-6">
+						<div class="iconbox">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/payment.png}" alt="">
+								</div>
+								<div class="box-title">
+									<h3>Thanh toán</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<p>Hệ thống an toàn</p>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox -->
+					</div>
+					<!-- /.col-md-3 col-sm-6 -->
+					<div class="col-md-3 col-sm-6">
+						<div class="iconbox">
+							<div class="box-header">
+								<div class="image">
+									<img th:src="@{/assets/images/icons/return.png}" alt="">
+								</div>
+								<div class="box-title">
+									<h3>Trả lại 30 ngày</h3>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-content">
+								<p>Đổi trả sản phẩm miễn phí trong 30 ngày</p>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.iconbox -->
+					</div>
+					<!-- /.col-md-3 col-sm-6 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.flat-iconbox -->
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6">
+						<div class="widget-ft widget-about">
+							<div class="logo logo-ft">
+								<a th:href="@{/}" title="Trang chủ"> <img
+									th:src="@{/assets/images/logos/logotechshop.png}" alt="">
+								</a>
+							</div>
+							<!-- /.logo-ft -->
+							<div class="widget-content">
+								<div class="icon">
+									<img th:src="@{/assets/images/icons/call.png}" alt="">
+								</div>
+								<div class="info">
+									<p class="questions">Có câu hỏi nào không ? Gọi cho chúng
+										tôi 24/7!</p>
+									<p class="phone">SĐT: (84+)859199440</p>
+									<p class="questions">
+										Email:<a href="mailto:dubqpc02679@fpt.edu.vn">dubqpc02679@fpt.edu.vn</a>
+									</p>
+									<p class="address">Địa chỉ: Số 288, Nguyễn Văn Linh, phường
+										An Khánh, quận Ninh Kiều, Tp. Cần Thơ.</p>
+								</div>
+							</div>
+							<!-- /.widget-content -->
+							<ul class="social-list">
+								<li><a th:href="@{/#}" title=""> <i
+										class="fa fa-facebook" aria-hidden="true"></i>
+								</a></li>
+								<li><a th:href="@{/#}" title=""> <i
+										class="fa fa-twitter" aria-hidden="true"></i>
+								</a></li>
+								<li><a th:href="@{/#}" title=""> <i
+										class="fa fa-instagram" aria-hidden="true"></i>
+								</a></li>
+								<li><a th:href="@{/#}" title=""> <i
+										class="fa fa-pinterest" aria-hidden="true"></i>
+								</a></li>
+								<li><a th:href="@{/#}" title=""> <i
+										class="fa fa-dribbble" aria-hidden="true"></i>
+								</a></li>
+								<li><a th:href="@{/#}" title=""> <i
+										class="fa fa-google" aria-hidden="true"></i>
+								</a></li>
+							</ul>
+							<!-- /.social-list -->
+						</div>
+						<!-- /.widget-about -->
+					</div>
+					<!-- /.col-lg-3 col-md-6 -->
+					<div class="col-lg-3 col-md-6">
+						<div class="widget-ft widget-categories-ft">
+							<div class="widget-title">
+								<h3>DANH MỤC</h3>
+							</div>
+							<ul class="cat-list-ft">
+								<li><a th:href="@{/}" title="">Techno Shop</a></li>
+								<li><a th:href="@{/product/page?category=mobile}" title="">Điện thoại</a></li>
+								<li><a th:href="@{/product/page?category=laptop}" title="">Laptop</a></li>
+								<li><a th:href="@{/product/page?category=tablet}" title="">Tablet</a></li>
+								<li><a th:href="@{/product/page?category=accessory}" title="">Phụ kiện</a></li>
+							</ul>
+							<!-- /.cat-list-ft -->
+						</div>
+						<!-- /.widget-categories-ft -->
+					</div>
+					<!-- /.col-lg-3 col-md-6 -->
+					<div class="col-lg-2 col-md-6">
+						<div class="widget-ft widget-menu">
+							<div class="widget-title">
+								<h3>THÔNG TIN</h3>
+							</div>
+							<ul>
+								<li><a th:href="@{/}" title=""> Trang chủ </a></li>
+								<li><a th:href="@{/product/page}" title="">Sản phẩm </a></li>
+								<li><a th:href="@{/about}" title=""> Giới thiệu </a></li>
+								<li><a th:href="@{/contact}" title=""> Liên hệ </a></li>
+								<li><a th:href="@{/blog}" title=""> Tin tức </a></li>
+								<li><a th:href="@{/faq}" title=""> Hỏi đáp</a></li>
+							</ul>
+						</div>
+						<!-- /.widget-menu -->
+					</div>
+					<!-- /.col-lg-2 col-md-6 -->
+					<div class="col-lg-4 col-md-6">
+						<div class="widget-ft widget-newsletter">
+							<div class="widget-title">
+								<h3>ĐĂNG KÝ ĐỂ NHẬN THÊM THÔNG TIN</h3>
+							</div>
+							<p>
+								Hãy chắc chắn rằng bạn không bao giờ bỏ lỡ thú vị của chúng tôi
+								<br /> Tin tức của tham gia chương trình bản tin của chúng tôi
+							</p>
+							<form action="#" class="subscribe-form" method="get"
+								accept-charset="utf-8">
+								<div class="subscribe-content">
+									<input type="text" name="email" class="subscribe-email"
+										placeholder="Nhập email của bạn ...">
+									<button type="submit">
+										<img th:src="@{/assets/images/icons/right-2.png}" alt="">
+									</button>
+								</div>
+							</form>
+							<!-- /.subscribe-form -->
+							<ul class="pay-list">
+								<li><a th:href="@{/}" title=""> <img
+										th:src="@{/assets/images/logos/ft-01.png}" alt="">
+								</a></li>
+								<li><a th:href="@{/}" title=""> <img
+										th:src="@{/assets/images/logos/ft-02.png}" alt="">
+								</a></li>
+								<li><a th:href="@{/}" title=""> <img
+										th:src="@{/assets/images/logos/ft-03.png}" alt="">
+								</a></li>
+								<li><a th:href="@{/}" title=""> <img
+										th:src="@{/assets/images/logos/ft-04.png}" alt="">
+								</a></li>
+								<li><a th:href="@{/}" title=""> <img
+										th:src="@{/assets/images/logos/ft-05.png}" alt="">
+								</a></li>
+							</ul>
+							<!-- /.pay-list -->
+						</div>
+						<!-- /.widget-newsletter -->
+					</div>
+					<!-- /.col-lg-4 col-md-6 -->
+				</div>
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget widget-apps">
+							<div class="widget-title">
+								<h3>Mobile Apps</h3>
+							</div>
+							<ul class="app-list">
+								<li class="app-store"><a href="#" title="">
+										<div class="img">
+											<img th:src="@{/assets/images/icons/app-store.png}" alt="">
+										</div>
+										<div class="text">
+											<h4>App Store</h4>
+											<p>Trải nghiệm ngay!</p>
+										</div>
+								</a></li>
+								<!-- /.app-store -->
+								<li class="google-play"><a href="#" title="">
+										<div class="img">
+											<img th:src="@{/assets/images/icons/google-play.png}" alt="">
+										</div>
+										<div class="text">
+											<h4>Google Play</h4>
+											<p>Trải nghiệm ngay!</p>
+										</div>
+								</a></li>
+								<!-- /.google-play -->
+							</ul>
+							<!-- /.app-list -->
+						</div>
+						<!-- /.widget-apps -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</footer>
+		<!-- /footer -->
+		<section class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="copyright">© Techno Shop 2022</p>
+						<p class="btn-scroll">
+							<a th:href="@{/#}" title=""> <img
+								th:src="@{/assets/images/icons/top.png}" alt="">
+							</a>
+						</p>
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /.footer-bottom -->
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<div class="container-fluid">
+	<div class="row mt-3">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-body">
+					<hr>
+					
+					<input type="file" onchange="angular.element(this).scope().imageChanged(this.files)"
+						id="image" style="visibility: hidden;" class="form-control" />
+					<div class="form-group row" style="height: 180px">
+						<div class="col-md-9">
+							<label  for="username">Tên Đăng Nhập :</label> <input
+								type="text" ng-model="form.username" class="form-control"
+							 placeholder="Tên đăng nhập" /> 
+							<label  for="lastname">Họ :</label> <input
+								type="text" ng-model="form.lastName" class="form-control"
+							 placeholder="Họ của bạn?" />
+							 <label  for="firtsname">Tên :</label> <input
+								type="text" ng-model="form.firstName" class="form-control"
+							 placeholder="Tên của bạn?" />  
+							
+						</div>
+						<!--  -->
+						<div class="col-md-3">
+							<div>
+								<label for="image" ng-if="form.photo != null"> <img alt=""
+									ng-src="{{'/TechnoShop/assets/images/avatar/'+form.photo}}" width="220px" height="220px"
+									style="float: right; object-fit: cover; border: 1px solid #fff;">
+								</label>
+							</div>		
+						</div>
+					</div>
+					<br> <br>
+					<!--<div class="form-group">
+						<label class="col-form-label" >Giới Tính :</label>
+						<div>
+							<input ng-model="form.phone" class="form-control"
+								placeholder="số điện thoại" required="required" id="phone"></input>
+						</div>
+					</div>-->
+					<div class="form-group">
+						<label class="col-form-label" >SĐT :</label>
+						<div>
+							<input ng-model="form.phone" class="form-control"
+								placeholder="số điện thoại" required="required" id="phone"></input>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="col-form-label">Email :</label>
+						<div>
+							<div>
+								<input ng-model="form.email" class="form-control"
+									placeholder="Email" type="email" required="required"
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									title="Email không hợp lệ" id="email"></input>
+							</div>
+						</div>
+					</div>
+					<div class="form-footer">
+						<button  class="btn btn-success" ng-click="create()">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button ng-if="form.username != null" class="btn btn-warning" ng-click="update(form)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button class="btn btn-dark" ng-click="reset()">
+							<i class="fa fa-refresh" aria-hidden="true"></i> Làm mới
+						</button>
+						<button ng-if="form.username != null" class="btn btn-danger" ng-click="delete(form)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay toggle-menu"></div>
+</div>

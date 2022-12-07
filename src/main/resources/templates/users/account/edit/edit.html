@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<div th:replace="users/loading/loading :: loading"></div>
+		<!-- <div th:replace="users/popup/popup :: popup"></div> -->
+
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+
+		<div class="container" style="margin-bottom: 25px;">
+			<br>
+
+
+			<h3 class="title" style="font-weight: 700">Thông tin cá nhân</h3>
+			<br>
+
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="quan-li-thong-tin">
+						<li class="nav-item2 " style="list-style-type: none;"><a
+							class="nav-link collapsed" ata-toggle="collapse">
+								<div class="row">
+									<div class="col-sm-2">
+										<i class="fas fa-info-circle"></i>
+									</div>
+									<div class="col-sm-10" style="padding: 0px 15px;">
+										<span> <b>Thông tin cá nhân</b>
+											<p>Quản lý thông tin cá nhân</p>
+										</span>
+									</div>
+								</div>
+						</a></li>
+					</div>
+					<li class="nav-item2" style="list-style-type: none;"><a
+						class="nav-link collapsed" th:href="@{/account/repass}"
+						data-target="#collapseTwo" aria-expanded="true"
+						aria-controls="collapseTwo">
+							<div class="row">
+								<div class="col-sm-2">
+									<i class="fas fa-key"></i>
+								</div>
+								<div class="col-sm-10" style="padding: 0px 15px;">
+									<span> <b>Thay đổi mật khẩu</b>
+										<p>Cập nhật mật khẩu mới</p>
+									</span>
+								</div>
+							</div>
+					</a></li>
+					<li class="nav-item2" style="list-style-type: none;"><a
+						class="nav-link collapsed" th:href="@{/order/history}"
+						data-target="#collapseTwo" aria-expanded="true"
+						aria-controls="collapseTwo">
+							<div class="row">
+								<div class="col-sm-2">
+									<i class="fas fa-shopping-cart"></i>
+								</div>
+								<div class="col-sm-10" style="padding: 0px 15px;">
+									<span> <b>Lịch sử đơn hàng</b>
+										<p>Thông tin sản phẩm đã mua</p>
+									</span>
+								</div>
+							</div>
+					</a></li>
+
+				</div>
+
+				<div class="col-sm-8">
+					<div class="ct1">
+						<div>
+							<h4 style="font-weight: 600">Thông tin cá nhân</h4>
+							<hr>
+							<h4 class="label label-success"></h4>
+							<label for="attach"> <img ng-if="form.photo.length<21"
+								ng-src="{{'/TechnoShop/assets/images/avatar/'+form.photo}}"
+								id="img-avartar" /> <img ng-if="form.photo.length>20"
+								ng-src="{{form.photo}}" id="img-avartar" />
+							</label>
+							<div class="form-register">
+								<div class="form-box">
+									<label for="name-register">Tên đăng nhâp * </label> <input
+										type="text" id="name-register" name="name-register"
+										ng-model="form.username" readonly="readonly"
+										style="width: 70%">
+								</div>
+								<div class="form-box">
+									<label for="password-login">Họ</label> <input type="text"
+										id="name-login" name="username" ng-model="form.lastName"
+										placeholder="Họ của bạn?" style="width: 70%">
+								</div>
+								<div class="form-box">
+									<label for="password-login">Tên * </label> <input type="text"
+										id="name-login" name="username" ng-model="form.firstName"
+										placeholder="Tên của bạn?" style="width: 70%">
+								</div>
+								<div class="form-box">
+									<label for="password-login">Email * </label> <input type="text"
+										id="name-login" name="username" ng-model="form.email"
+										placeholder="Email?">
+								</div>
+								<!-- /.form-box -->
+								<input type="file" id="attach" name="attach"
+									accept=".png, .jpg, .jpeg" class="form-control"
+									onchange="angular.element(this).scope().UploadAvatar(this.files)"
+									style="display: none" />
+								<div class="form-box">
+									<button class="register" ng-click="updateAccount()">Cập nhật</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

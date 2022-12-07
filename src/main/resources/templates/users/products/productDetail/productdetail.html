@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Chi tiết sản phẩm</title>
+</head>
+<body class="header_sticky" ng-app="shopping-cart-app"
+	ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+
+		<main id="single-product">
+			<div class="container">
+				<div class="row">
+					<!-- /.col-lg-3 col-md-4 -->
+					<div class="col-lg-12 col-md-12">
+						<div class="flat-product-detail">
+							<div class="row">
+								<div class="box-flexslider">
+									<div class="flexslider">
+										<ul class="slides">
+
+											<li
+												th:data-thumb="@{|/assets/images/product/${pd.mainImage}|}">
+												<a href='' id="zoom" class='zoom'><img
+													th:src="@{|/assets/images/product/${pd.mainImage}|}" alt=''
+													width='400' height='300' /></a> <span>-
+													[[${pd.discount.discount}]]%</span>
+											</li>
+
+											<li th:each="image: ${pd.image}" th:if="${pd.image.size>0}"
+												th:data-thumb="@{|/assets/images/product/${image.name}|}">
+												<a href='' th:id="'zoom' + ${imageStat.index+1}"
+												class='zoom'><img
+													th:src="@{|/assets/images/product/${image.name}|}" alt=''
+													width='400' height='300' /></a>
+											</li>
+										</ul>
+										<!-- /.slides -->
+									</div>
+									<!-- /.flexslider -->
+								</div>
+								<!-- /.box-flexslider -->
+								<div class="product-detail style5">
+									<div class="header-detail">
+										<h4 class="name">[[${pd.name}]]</h4>
+										<div class="category">[[${pd.category.name}]]</div>
+										<div class="reviewed">
+											<div class="review">
+												<div class="queue">
+													<i class="fa fa-star" aria-hidden="true"></i> <i
+														class="fa fa-star" aria-hidden="true"></i> <i
+														class="fa fa-star" aria-hidden="true"></i> <i
+														class="fa fa-star" aria-hidden="true"></i> <i
+														class="fa fa-star" aria-hidden="true"></i>
+												</div>
+												<div class="text">
+													<span>3 đánh giá</span>
+												</div>
+											</div>
+
+											<div class="status-product" th:if="${pd.avaliable}">
+												Trạng thái<span id="status-product-detail-success">Còn
+													hàng</span>
+											</div>
+											<div class="status-product" th:unless="${pd.avaliable}">
+												Trạng thái<span>Hết hàng</span>
+											</div>
+										</div>
+									</div>
+									<!-- /.header-detail -->
+									<div class="content-detail">
+										<div class="price" th:if="${pd.discount.discount>0}">
+											<div class="regular">
+												[[${#numbers.formatDecimal(pd.price,1, 'DEFAULT', 0,
+												'DEFAULT')}]]₫</div>
+											<div class="sale">[[${#numbers.formatDecimal(pd.price*(1-(pd.discount.discount/100)),1,
+												'DEFAULT', 0, 'DEFAULT')}]]₫</div>
+										</div>
+										<div class="price" th:unless="${pd.discount.discount>0}">
+											<div class="sale">
+												[[${#numbers.formatDecimal(pd.price,1, 'DEFAULT', 0,
+												'DEFAULT')}]]₫</div>
+										</div>
+										<div class="info-text">[[${pd.description}]]</div>
+									</div>
+									<!-- /.content-detail -->
+									<div class="footer-detail">
+										<div class="quanlity-box" th:if="${pd.avaliable}">
+											<div class="quanlity">
+												<span class="btn-down"
+													th:attr="ng-click=@{|cart.decreaseQuantityWhenAdd(${pd.id})|}"></span>
+												<input type="text" name="number" value="1" id="soluong"
+													onChange="HandleChange()" placeholder="Quanlity"> <span
+													class="btn-up"
+													th:attr="ng-click=@{|cart.incrementQuantityWhenAdd(${pd.id})|}"></span>
+											</div>
+											<div class="quanlity">
+												<b class="boldColor">[[${pd.inventory}]] <span>Sản
+														phẩm có sẵn</span></b>
+											</div>
+										</div>
+										<div class="box-cart style2" th:unless="${pd.avaliable}">
+											<div class="stop">Ngừng kinh doanh</div>
+											<br>
+											<div class="compare-wishlist">
+												<a th:href="@{|/product/config/add/${pd.id}|}"
+													class="compare" title=""
+													th:unless="${pd.category.id=='accessory'}"><img
+													th:src="@{/assets/images/icons/compare.png}" alt="">So
+													sánh</a>
+											</div>
+										</div>
+										<div class="box-cart style2" th:if="${pd.avaliable}">
+											<div class="btn-add-cart"
+												th:attr="ng-click=@{|cart.addCartItem(${pd.id})|}">
+												<a title=""><img
+													th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+													giỏ hàng</a>
+											</div>
+											<div class="compare-wishlist">
+												<a th:href="@{|/product/config/add/${pd.id}|}"
+													class="compare" title=""
+													th:unless="${pd.category.id=='accessory'}"><img
+													th:src="@{/assets/images/icons/compare.png}" alt="">So
+													sánh</a> <a href="compare.html" class="wishlist" title=""><img
+													th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
+													thích</a>
+											</div>
+										</div>
+										<div class="social-single">
+											<span>Chia sẻ với</span>
+											<ul class="social-list style2">
+												<li><a href="#" title=""> <i class="fa fa-facebook"
+														aria-hidden="true"></i>
+												</a></li>
+												<li><a href="#" title=""> <i class="fa fa-twitter"
+														aria-hidden="true"></i>
+												</a></li>
+												<li><a href="#" title=""> <i
+														class="fa fa-instagram" aria-hidden="true"></i>
+												</a></li>
+												<li><a href="#" title=""> <i
+														class="fa fa-pinterest" aria-hidden="true"></i>
+												</a></li>
+												<li><a href="#" title=""> <i class="fa fa-dribbble"
+														aria-hidden="true"></i>
+												</a></li>
+												<li><a href="#" title=""> <i class="fa fa-google"
+														aria-hidden="true"></i>
+												</a></li>
+											</ul>
+										</div>
+									</div>
+									<!-- /.footer-detail -->
+								</div>
+								<!-- /.product-detail style5 -->
+								<div class="clearfix"></div>
+							</div>
+							<!-- /.row -->
+						</div>
+						<!-- /.flat-product-detail -->
+						<div class="flat-product-content style2">
+							<div class="row">
+								<ul class="product-detail-bar">
+									<li class="active">Mô tả</li>
+									<li>Thông số kĩ thuật</li>
+									<li>Đánh giá</li>
+								</ul>
+								<!-- /.product-detail-bar -->
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="description-text style1">
+												<div class="box-text">
+													<p>[[${pd.description}]].</p>
+												</div>
+
+											</div>
+										</div>
+										<!-- /.col-lg-12 -->
+										<div class="col-lg-5">
+											<div class="box-left style1">
+												<div class="img-product">
+													<img th:if="${pd.image.size > 0}"
+														th:src="@{|/assets/images/product/${pd.image[0].name}|}"
+														alt="">
+												</div>
+											</div>
+											<!-- /.box-left style1 -->
+										</div>
+										<!-- /.col-lg-5 -->
+
+									</div>
+									<!-- /.row -->
+									<div class="row">
+										<div class="col-md-12">
+											<div class="tecnical-specs">
+												<h4 class="name">[[${pd.name}]]</h4>
+												<table
+													th:if="${pd.configLaptop.size != 0 or pd.configPhone.size != 0}">
+													<tbody
+														th:each="pdconfig: ${pd.configPhone.size != 0 ? pd.configPhone : pd.configLaptop}">
+														<tr>
+															<td>Màn hình:</td>
+															<td>[[${pdconfig.screen.typeScreen}]]</td>
+														</tr>
+														<tr>
+															<td>Hệ điều hành:</td>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.operatingSystem}]]</td>
+
+														</tr>
+														<tr
+															th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">
+															<td>Camera sau:</td>
+															<td>[[${pdconfig.cameraBefore}]]</td>
+														</tr>
+														<tr
+															th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">
+															<td>Camera trước:</td>
+															<td>[[${pdconfig.cameraAfter}]]</td>
+														</tr>
+														<tr>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">Chip:</td>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.cpu}]]</td>
+															<td th:if="${pd.category.id=='laptop'}">CPU:</td>
+
+														</tr>
+														<tr
+															th:if="${pd.category.id=='mobile' or pd.category.id=='table'}">
+															<td>RAM:</td>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.ram}]]</td>
+														</tr>
+														<tr>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">Dung
+																lượng lưu trữ:</td>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.rom}]]</td>
+															<td th:if="${pd.category.id=='laptop'}">Ổ cứng:</td>
+															<td th:if="${pd.category.id=='laptop'}">[[${pdconfig.hardDriver}]]</td>
+														</tr>
+														<tr
+															th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">
+															<td>SIM:</td>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.connect.sim}]]</td>
+														</tr>
+														<tr>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">Pin,
+																Sạc:</td>
+															<td
+																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.batteryCharge.batteryCapacity+',
+																'+pdconfig.batteryCharge.chargeSupport}]]</td>
+														</tr>
+														<tr th:if="${pd.category.id=='laptop'}">
+															<td>Card màn hình:</td>
+															<td>[[${pdconfig.graphicsSound.cartDesign}]]</td>
+														</tr>
+														<tr th:if="${pd.category.id=='laptop'}">
+															<td>Cổng kết nối:</td>
+															<td></td>
+														</tr>
+														<tr th:if="${pd.category.id=='laptop'}">
+															<td>Thiết kế:</td>
+															<td>[[${pdconfig.generalInformation.design}]]</td>
+														</tr>
+														<tr th:if="${pd.category.id=='laptop'}">
+															<td>Kích thước, khối lượng:</td>
+															<td>Dài [[${pdconfig.generalInformation.width}]] mm
+																- Rộng [[${pdconfig.generalInformation.height}]] mm -
+																Dày [[${pdconfig.generalInformation.thick}]] mm - Nặng
+																[[${pdconfig.generalInformation.weight}]] kg</td>
+														</tr>
+
+													</tbody>
+												</table>
+												<span
+													th:unless="${pd.configLaptop.size != 0 or pd.configPhone.size != 0}"
+													class="message-account"> Chưa cập nhật được cấu hình
+													cho sản phẩm này! </span>
+											</div>
+											<!-- /.tecnical-specs -->
+										</div>
+										<!-- /.col-md-12 -->
+									</div>
+									<!-- /.row -->
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="rating style1">
+												<div class="title">Dựa trên [[${listReview.size}]]
+													đánh giá</div>
+												<div class="score">
+													<div class="average-score">
+														<p class="numb">4.3</p>
+														<p class="text">Điểm trung bình</p>
+													</div>
+
+												</div>
+												<ul class="queue-box">
+													<li class="five-star"><span> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i>
+													</span> <span class="numb-star">3</span></li>
+													<li class="four-star"><span> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i>
+													</span> <span class="numb-star">4</span></li>
+													<li class="three-star"><span> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i>
+													</span> <span class="numb-star">3</span></li>
+													<li class="two-star"><span> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i>
+													</span> <span class="numb-star">2</span></li>
+													<li class="one-star"><span> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i> <i
+															class="fa fa-star" aria-hidden="true"></i>
+													</span> <span class="numb-star">0</span></li>
+												</ul>
+											</div>
+											<!-- /.rating style1 -->
+										</div>
+										<!-- /.col-lg-6 -->
+										<div class="col-lg-6">
+											<div class="form-review style2">
+												<div class="title">Thêm 1 đánh giá mới</div>
+												<div class="your-rating queue">
+													<span>Đánh giá của bạn</span>
+													<form>
+														<input type="text" class="kv-uni-star rating-loading"
+															value="3" data-size="xs" title=""> <br>
+													</form>
+												</div>
+												<form th:if="${#request.remoteUser}">
+													<div class="review-form-name">
+														<input type="text" name="name-author"
+															ng-value="form.lastName!==null?form.lastName+' '+form.firstName: form.firstName"
+															placeholder="Tên?">
+													</div>
+													<div class="review-form-email">
+														<input type="text" name="email-author" value=""
+															ng-value="form.email" placeholder="Email?">
+													</div>
+													<div class="review-form-comment">
+														<textarea name="review-text" id="review-text"
+															placeholder="Nội dung đánh giá"></textarea>
+													</div>
+													<div class="btn-submit">
+														<button type="submit"
+															th:attr="ng-click=@{|addReviewByProductId(${pd.id})|}">Thêm</button>
+													</div>
+												</form>
+											</div>
+											<!-- /.form-review style2 -->
+										</div>
+										<!-- /.col-lg-6 -->
+										<div class="col-lg-12">
+											<ul class="review-list">
+												<li th:each="rv: ${listReview}">
+													<div class="review-metadata">
+														<div class="name">
+															[[${rv.users.lastName == 'null' ? '' : rv.users.lastName
+															}]] [[${rv.users.firstName}]] : <span>[[${#dates.format(rv.voteDate,
+																'dd-MMM-yyyy')}]]</span>
+														</div>
+														<!-- 1 start -->
+														<div class="divStartUser" th:if="${rv.rate == 1}">
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i>
+														</div>
+														<!-- 2 start -->
+														<div class="divStartUser" th:if="${rv.rate == 2}">
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i>
+														</div>
+														<!-- 3 start -->
+														<div class="divStartUser" th:if="${rv.rate == 3}">
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i>
+														</div>
+														<!-- 4 start -->
+														<div class="divStartUser" th:if="${rv.rate == 4}">
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star" aria-hidden="true"></i>
+														</div>
+														<!-- 5 start -->
+														<div class="divStartUser" th:if="${rv.rate == 5}">
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+															<i class="fa fa-star startOrange" aria-hidden="true"></i>
+														</div>
+													</div> <!-- /.review-metadata -->
+													<div class="review-content">
+														<p>[[${rv.contents}]]</p>
+													</div> <!-- /.review-content -->
+												</li>
+												<li th:if="${listReview.size == 0}" class="message-account">Chưa
+													có đánh giá nào!</li>
+											</ul>
+											<!-- /.review-list -->
+										</div>
+										<!-- /.col-lg-12 -->
+									</div>
+									<!-- /.row -->
+								</div>
+								<!-- /.col-md-12 -->
+							</div>
+							<!-- /.row -->
+						</div>
+						<!-- /.flat-product-content style2 -->
+					</div>
+					<!-- /.col-lg-9 col-md-8 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</main>
+		<!-- /#single-product -->
+
+		<th:block th:replace="users/optionShow/optionshow3 :: flat-imagebox3"></th:block>
+		<input th:value="${pd.inventory}" id="inventory"
+			style="visibility: hidden;">
+		<!-- /.flat-imagebox style4 -->
+		<!-- /.flat-iconbox -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+		<script>
+			$(document).on('ready', function() {
+				$('.kv-uni-star').rating({
+					theme : 'krajee-uni',
+					filledStar : '&#x2605;',
+					emptyStar : '&#x2606;'
+				});
+
+				$('.kv-uni-star').on('change', function() {
+					//console.log('Rating selected: ' + $(this).val());
+					localStorage.setItem("startNumber", $(this).val());
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			function HandleChange() {
+				var sl = document.getElementById('soluong');
+				var inventory = document.getElementById('inventory');
+				var pattern = /^[0-9]+$/;
+				if (pattern.test(sl.value)) {
+					if (sl.value < 1) {
+						document.getElementById('soluong').value = 1;
+					} else if (Number(sl.value) > Number(inventory.value)) {
+						Swal.fire({
+							icon : 'error',
+							title : 'Lớn hơn số lượng hiện có!',
+							type : 'error',
+							timer : 1000
+						})
+						document.getElementById('soluong').value = inventory.value;
+					}
+				} else {
+					document.getElementById('soluong').value = 1;
+				}
+
+			}
+		</script>
+	</div>
+	<!-- /.boxed -->
+	<th:block th:replace="users/config/css_js :: link_css">
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="users/layout1 :: layout(~{::title}, ~{::body})">
+<head>
+<meta charset="UTF-8">
+<title>Techno Shop</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="boxed">
+		<section id="header" class="header">
+			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
+			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
+			<th:block th:replace="users/headers/header3 :: header-bot"></th:block>
+		</section>
+		<!-- /#header -->
+		<main id="shop" class="style2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="main-shop">
+							<div class="wrap-imagebox">
+								<div class="flat-row-title style4">
+									<h3>Sản phẩm</h3>
+									<span>Tổng có <b>[[${page.totalElements}]]</b> Sản phẩm
+									</span>
+									<div class="clearfix"></div>
+								</div>
+								<!-- /.flat-row-title style4 -->
+								<div class="sort-product style1">
+									<ul class="icons">
+										<li><img th:src="@{/assets/images/icons/list-1.png}"
+											alt=""></li>
+										<li><img th:src="@{/assets/images/icons/list-2.png}"
+											alt=""></li>
+										<li class="filter waves-effect">Bộ lọc</li>
+									</ul>
+									<!-- /.icons -->
+									<form action="" method="get" accept-charset="utf-8"
+										class="form-search">
+										<div class="box-filter">
+											<div class="widget widget-categories">
+
+												<div class="widget-title">
+													<h3>
+														Danh mục<span></span>
+													</h3>
+
+												</div>
+
+												<select name="category" class="boldColor">
+													<option th:each="cate: ${listCate}" class="boldColor"
+														th:value="${cate.id}">[[${cate.name}]]</option>
+												</select>
+
+												<!-- /.cat-list -->
+											</div>
+											<!-- /.widget-categories -->
+											<div class="widget widget-price">
+												<div class="widget-title">
+													<h3>
+														Giá<span></span>
+													</h3>
+												</div>
+												<select name="price" class="boldColor scroll">
+													<option th:each="price: ${priceListHashCode}"
+														class="boldColor" th:value="${price.key}">[[${price.value}]]</option>
+												</select>
+											</div>
+											<!-- /.widget widget-price -->
+											<div class="widget widget-brands">
+												<div class="widget-title">
+													<h3>
+														Thương hiệu<span></span>
+													</h3>
+												</div>
+												<div class="widget-content">
+													<select name="brand" class="boldColor scroll">
+														<option th:each="brand: ${listBrands}" class="boldColor"
+															th:value="${brand.id}">[[${brand.name}]]</option>
+													</select>
+													<button type="submit" class="waves-effect">
+														<img th:src="@{/assets/images/icons/search.png}" alt="">
+													</button>
+												</div>
+											</div>
+											<!-- /.widget widget-brands -->
+
+										</div>
+									</form>
+									<!-- /.box-filter -->
+									<div class="sort">
+										<div class="popularity">
+											<select name="popularity"
+												onChange="angular.element(this).scope().Select(value)">
+												<option>Sắp xếp</option>
+												<option th:value="id">Sắp xếp mặc định</option>
+												<option th:value="price">Sắp xếp theo giá</option>
+												<option th:value="name">Sắp xếp theo tên</option>
+											</select>
+										</div>
+									</div>
+									<!-- /.sort -->
+									<div class="clearfix"></div>
+								</div>
+								<!-- /.sort-product style1 -->
+								<div class="row">
+									<div class="col-lg-3 col-md-4 col-sm-6" th:each="pd: ${page}">
+										<div class="product-box">
+											<div class="imagebox">
+												<span class="item-new" th:if="${pd.discount.discount>0}">-
+													[[${pd.discount.discount}]]%</span>
+												<div class="box-image owl-carousel-1">
+													<div class="image">
+														<a th:href="@{|/product/productdetail/${pd.id}|}" title="">
+															<img th:src="@{|/assets/images/product/${pd.mainImage}|}"
+															alt="">
+														</a>
+													</div>
+
+													<div class="image" th:if="${pd.image.size < 1}">
+														<a th:href="@{|/product/productdetail/${pd.id}|}" title="">
+															<img th:src="@{|/assets/images/product/${pd.mainImage}|}"
+															alt="">
+														</a>
+													</div>
+													<div class="image" th:if="${pd.image.size < 1}">
+														<a th:href="@{|/product/productdetail/${pd.id}|}" title="">
+															<img th:src="@{|/assets/images/product/${pd.mainImage}|}"
+															alt="">
+														</a>
+													</div>
+													<div class="image" th:if="${pd.image.size < 1}">
+														<a th:href="@{|/product/productdetail/${pd.id}|}" title="">
+															<img th:src="@{|/assets/images/product/${pd.mainImage}|}"
+															alt="">
+														</a>
+													</div>
+													<div class="image" th:if="${pd.image.size >= 1}"
+														th:each="image: ${pd.image}">
+														<a th:href="@{|/product/productdetail/${pd.id}|}" title="">
+															<img th:src="@{|/assets/images/product/${image.name}|}"
+															alt="">
+														</a>
+													</div>
+												</div>
+												<!-- /.box-image -->
+												<div class="box-content">
+													<br>
+													<div class="cat-name">
+														<a th:href="@{|/product/page?category=${pd.category.id}|}"
+															title="">[[${pd.category.id }]]</a>
+													</div>
+													<div class="product-name">
+														<a th:href="@{|/product/productdetail/${pd.id}|}" title="">[[${pd.name}]]
+														</a>
+													</div>
+													<div class="price" th:if="${pd.discount.discount>0}">
+														<span class="sale">[[${#numbers.formatDecimal(pd.price*(1-(pd.discount.discount/100)),1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pd.price,1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+													</div>
+													<div class="price" th:unless="${pd.discount.discount>0}">
+														<span class="sale">[[${#numbers.formatDecimal(pd.price,1,
+															'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+													</div>
+												</div>
+												<!-- /.box-content -->
+
+												<div class="box-bottom" th:unless="${pd.avaliable}">
+													<div class="stop">Ngừng kinh doanh</div>
+												</div>
+												<div class="box-bottom" th:if="${pd.avaliable}">
+													<div class="btn-add-cart"
+														th:attr="ng-click=@{|cart.addCartItem(${pd.id})|}">
+														<a title=""> <img
+															th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+															giỏ hàng
+														</a>
+													</div>
+													<div class="compare-wishlist">
+														<a
+															th:href="@{|/product/config/add/${pd.configLaptop[0].id}|}"
+															class="compare" title=""
+															th:if="${pd.category.id =='laptop' and pd.configLaptop.size != 0 }">
+															<img th:src="@{/assets/images/icons/compare.png}" alt="">So
+															sánh
+														</a> <a
+															th:href="@{|/product/config/add/${pd.configPhone[0].id}|}"
+															class="compare" title=""
+															th:if="${pd.category.id =='mobile' and pd.configPhone.size != 0 }">
+															<img th:src="@{/assets/images/icons/compare.png}" alt="">So
+															sánh
+														</a> <a
+															th:href="@{|/product/config/add/${pd.configPhone[0].id}|}"
+															class="compare" title=""
+															th:if="${pd.category.id =='tablet' and pd.configPhone.size != 0 }">
+															<img th:src="@{/assets/images/icons/compare.png}" alt="">So
+															sánh
+														</a> <a href="#" class="wishlist" title=""> <img
+															th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
+															thích
+														</a>
+													</div>
+												</div>
+												<!-- /.box-bottom -->
+											</div>
+											<!-- /.imagebox -->
+										</div>
+										<!-- /.product-box -->
+									</div>
+									<!-- /.col-lg-3 col-md-4 col-sm-6 -->
+								</div>
+								<!-- /.row -->
+							</div>
+							<!-- /.wrap-imagebox -->
+							<div class="blog-pagination style1">
+								<span>Hiển thị trang <b>[[${page.number+1}]]</b> trong
+									tổng số <b>[[${page.totalPages}]]</b></span>
+								<ul class="flat-pagination style1">
+									<li class="prev" id="Garbage"><a title=""
+										th:href="@{|/product/page?${cate == null? '':cate}${field == null? '':field}${keywords == null? '':keywords}p=${(page.number-1) < 0 ? 0 : page.number-1}|}">
+											<img th:src="@{/assets/images/icons/left-1.png}" alt="">Trang
+											trước
+									</a></li>
+									<li class="next" id="Garbage"><a title=""
+										th:href="@{|/product/page?${cate == null? '':cate}${field == null? '':field}${keywords == null? '':keywords}p=${(page.number+1) > (page.totalPages -1) ? page.totalPages -1 : page.number+1}|}">Trang
+											sau<img th:src="@{/assets/images/icons/right-1.png}" alt="">
+									</a></li>
+								</ul>
+								<!-- /.flat-pagination -->
+								<div class="clearfix"></div>
+							</div>
+							<!-- /.blog-pagination -->
+						</div>
+						<!-- /.main-shop -->
+					</div>
+					<!-- /.col-md-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</main>
+		<input type="hidden" id="soluong" value="1">
+		<!-- /#shop -->
+		<th:block th:replace="users/footers/footer :: footer"></th:block>
+	</div>
+	<th:block th:replace="users/config/css_js :: link_css"></th:block>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<div class="clearfix"></div>
+<div class="content-wrapper">
+	<div class="container-fluid">
+		<div id="exTab1" class="container">
+			<ul class="nav nav-pills">
+				<li><a class="nav-link active" data-target="#a2a"
+					data-toggle="tab">Danh Sách Pin</a></li>
+				<li class="active"><a class="nav-link" data-target="#a1a"
+					data-toggle="tab">Tùy Chỉnh Pin</a></li>
+			</ul>
+
+			<div class="tab-content clearfix">
+				<div class="tab-pane" id="a1a">
+					<div ng-include="'/TechnoShop/assets/admin/battery/form_battery.html'"></div>
+				</div>
+				<div class="tab-pane active" id="a2a">
+					<div ng-include="'/TechnoShop/assets/admin/battery/list_battery.html'"></div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

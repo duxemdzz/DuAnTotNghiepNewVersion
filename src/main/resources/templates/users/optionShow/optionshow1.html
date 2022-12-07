@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<section class="flat-imagebox" th:fragment="flat-imagebox">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="product-tab style1">
+						<ul class="tab-list">
+							<li class="active">Điện thoại</li>
+							<li>Laptop</li>
+							<li>Tablet</li>
+							<li>Phụ kiện</li>
+						</ul>
+					</div>
+					<!-- /.product-tab -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="box-product">
+				<div class="row">
+					<div class="col-lg-3 col-sm-6" th:each="pd: ${listPdMobile}">
+						<div class="product-box">
+							<div class="imagebox">
+								<th:block>
+									<span class="item-new" th:if="${pd.discount.discount>0}">-
+										[[${pd.discount.discount}]]%</span>
+								</th:block>
+
+								<ul class="box-image owl-carousel-1">
+									<li><a th:href="@{|/product/productdetail/${pd.id}|}"
+										title=""> <img
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt=""
+											width="200px">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+
+									<li th:if="${pd.image.size >=1}" th:each="image: ${pd.image}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${image.name}|}" alt="">
+									</a></li>
+
+								</ul>
+								<!-- /.box-image -->
+								<div class="box-content">
+									<div class="cat-name">
+										<a th:href="@{|?category=${pd.category.id}|}" title="">[[${pd.category.name}]]</a>
+									</div>
+									<div class="product-name">
+										<a th:href="@{|/product/productdetail/${pd.id}|}" title="">[[${pd.name}]]<br />
+										</a>
+									</div>
+									<div class="price" th:if="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price*(1-(pd.discount.discount/100)),1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+									<div class="price" th:unless="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+								</div>
+								<!-- /.box-content -->
+								<div class="box-bottom" th:unless="${pd.avaliable}">
+									<div class="stop">Ngừng kinh doanh</div>
+								</div>
+								<div class="box-bottom" th:if="${pd.avaliable}">
+									<div class="btn-add-cart"
+										th:attr="ng-click=@{|cart.addCartItem(${pd.id})|}">
+										<a href="" title=""> <img
+											th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+											giỏ hàng
+										</a>
+									</div>
+									<div class="compare-wishlist">
+
+										<a th:href="@{|/product/config/add/${pd.configPhone[0].id}|}"
+											class="compare" title=""
+											th:if="${pd.category.id =='mobile' and pd.configPhone.size != 0 }">
+											<img th:src="@{/assets/images/icons/compare.png}" alt="">So
+											sánh
+										</a> <a href="" class="wishlist" title=""> <img
+											th:src="@{/assets/images/icons/wishlist.png}" alt=""
+											th:attr="ng-click=@{|cart.addWishList(${pd.id})|}">Yêu
+											thích
+										</a>
+									</div>
+								</div>
+								<!-- /.box-bottom -->
+							</div>
+							<!-- /.imagebox -->
+						</div>
+					</div>
+
+				</div>
+				<!-- Tab-1 -->
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-lg-3 col-sm-6" th:each="pd: ${listPdLaptop}">
+						<div class="product-box">
+							<div class="imagebox">
+								<th:block>
+									<span class="item-new" th:if="${pd.discount.discount>0}">-
+										[[${pd.discount.discount}]]%</span>
+								</th:block>
+
+								<ul class="box-image owl-carousel-1">
+									<li><a th:href="@{|/product/productdetail/${pd.id}|}"
+										title=""> <img
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt=""
+											width="200px">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+
+									<li th:if="${pd.image.size >=1}" th:each="image: ${pd.image}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${image.name}|}" alt="">
+									</a></li>
+
+								</ul>
+								<!-- /.box-image -->
+								<div class="box-content">
+									<div class="cat-name">
+										<a th:href="@{|?category=${pd.category.id}|}" title="">[[${pd.category.name}]]</a>
+									</div>
+									<div class="product-name">
+										<a th:href="@{|/product/productdetail/${pd.id}|}" title="">[[${pd.name}]]<br />
+										</a>
+									</div>
+									<div class="price" th:if="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price*(1-(pd.discount.discount/100)),1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+									<div class="price" th:unless="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+								</div>
+								<!-- /.box-content -->
+								<div class="box-bottom" th:unless="${pd.avaliable}">
+									<div class="stop">Ngừng kinh doanh</div>
+								</div>
+								<div class="box-bottom" th:if="${pd.avaliable}">
+									<div class="btn-add-cart"
+										th:attr="ng-click=@{|cart.addCartItem(${pd.id})|}">
+										<a href="" title=""> <img
+											th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+											giỏ hàng
+										</a>
+									</div>
+									<div class="compare-wishlist">
+										<a
+											th:href="@{|/product/config/add/laptop/${pd.configLaptop[0].id}|}"
+											class="compare" title="" th:if="${pd.category.id =='laptop'}">
+											<img th:src="@{/assets/images/icons/compare.png}" alt="">So
+											sánh
+										</a> <a href="" class="wishlist" title=""> <img
+											th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
+											thích
+										</a>
+									</div>
+								</div>
+								<!-- /.box-bottom -->
+							</div>
+							<!-- /.imagebox -->
+						</div>
+					</div>
+
+				</div>
+				<!-- Tab2 -->
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-lg-3 col-sm-6" th:each="pd: ${listPdTablet}">
+						<div class="product-box">
+							<div class="imagebox">
+								<th:block>
+									<span class="item-new" th:if="${pd.discount.discount>0}">-
+										[[${pd.discount.discount}]]%</span>
+								</th:block>
+
+								<ul class="box-image owl-carousel-1">
+									<li><a th:href="@{|/product/productdetail/${pd.id}|}"
+										title=""> <img
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt=""
+											width="200px">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+
+									<li th:if="${pd.image.size >=1}" th:each="image: ${pd.image}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${image.name}|}" alt="">
+									</a></li>
+
+								</ul>
+								<!-- /.box-image -->
+								<div class="box-content">
+									<div class="cat-name">
+										<a th:href="@{|?category=${pd.category.id}|}" title="">[[${pd.category.name}]]</a>
+									</div>
+									<div class="product-name">
+										<a th:href="@{|/product/productdetail/${pd.id}|}" title="">[[${pd.name}]]<br />
+										</a>
+									</div>
+									<div class="price" th:if="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price*(1-(pd.discount.discount/100)),1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+									<div class="price" th:unless="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+								</div>
+								<!-- /.box-content -->
+								<div class="box-bottom" th:unless="${pd.avaliable}">
+									<div class="stop">Ngừng kinh doanh</div>
+								</div>
+								<div class="box-bottom" th:if="${pd.avaliable}">
+									<div class="btn-add-cart"
+										th:attr="ng-click=@{|cart.addCartItem(${pd.id})|}">
+										<a href="" title=""> <img
+											th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+											giỏ hàng
+										</a>
+									</div>
+									<div class="compare-wishlist">
+										<a th:href="@{|/product/config/add/${pd.configPhone[0].id}|}"
+											class="compare" title=""
+											th:if="${pd.category.id =='tablet' and pd.configPhone.size != 0 }">
+											<img th:src="@{/assets/images/icons/compare.png}" alt="">So
+											sánh
+										</a> <a href="" class="wishlist" title=""> <img
+											th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
+											thích
+										</a>
+									</div>
+								</div>
+								<!-- /.box-bottom -->
+							</div>
+							<!-- /.imagebox -->
+						</div>
+					</div>
+
+				</div>
+				<!-- Tab 3 -->
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-lg-3 col-sm-6" th:each="pd: ${listPdAccessory}">
+						<div class="product-box">
+							<div class="imagebox">
+								<th:block>
+									<span class="item-new" th:if="${pd.discount.discount>0}">-
+										[[${pd.discount.discount}]]%</span>
+								</th:block>
+
+								<ul class="box-image owl-carousel-1">
+									<li><a th:href="@{|/product/productdetail/${pd.id}|}"
+										title=""> <img
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt=""
+											width="200px">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+									<li th:if="${pd.image.size < 1}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${pd.mainImage}|}" alt="">
+									</a></li>
+
+									<li th:if="${pd.image.size >=1}" th:each="image: ${pd.image}"><a
+										th:href="@{|/product/productdetail/${pd.id}|}" title=""> <img
+											width="200px"
+											th:src="@{|/assets/images/product/${image.name}|}" alt="">
+									</a></li>
+
+								</ul>
+								<!-- /.box-image -->
+								<div class="box-content">
+									<div class="cat-name">
+										<a th:href="@{|?category=${pd.category.id}|}" title="">[[${pd.category.name}]]</a>
+									</div>
+									<div class="product-name">
+										<a th:href="@{|/product/productdetail/${pd.id}|}" title="">[[${pd.name}]]<br />
+										</a>
+									</div>
+									<div class="price" th:if="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price*(1-(pd.discount.discount/100)),1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+									<div class="price" th:unless="${pd.discount.discount>0}">
+										<span class="sale">[[${#numbers.formatDecimal(pd.price,1,
+											'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+									</div>
+								</div>
+								<!-- /.box-content -->
+								<div class="box-bottom" th:unless="${pd.avaliable}">
+									<div class="stop">Ngừng kinh doanh</div>
+								</div>
+								<div class="box-bottom" th:if="${pd.avaliable}">
+									<div class="btn-add-cart"
+										th:attr="ng-click=@{|cart.addCartItem(${pd.id})|}">
+										<a href="" title=""> <img
+											th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
+											giỏ hàng
+										</a>
+									</div>
+									<div class="compare-wishlist">
+										<a href="" class="wishlist" title=""> <img
+											th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
+											thích
+										</a>
+									</div>
+								</div>
+								<!-- /.box-bottom -->
+							</div>
+							<!-- /.imagebox -->
+						</div>
+					</div>
+
+				</div>
+				<!-- Tab4 -->
+				<!-- row -->
+			</div>
+			<!-- /.box-product -->
+		</div>
+		<input id="message_error" th:value="${param.message}" type="hidden">
+		<input type="hidden" id="soluong" value="1">
+		<script type="text/javascript">
+			var message_error = document.getElementById('message_error').value
+			if (message_error) {
+				Swal.fire({
+					icon : 'error',
+					title : message_error,
+					type : 'error',
+					timer : 3000
+				})
+			}
+		</script>
+		<!-- /.container -->
+	</section>
+	<!-- /.flat-imagebox -->
+</body>
+</html>

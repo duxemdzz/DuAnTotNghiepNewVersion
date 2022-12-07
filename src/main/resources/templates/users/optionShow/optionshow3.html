@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<section class="flat-imagebox style4" th:fragment="flat-imagebox3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="flat-row-title">
+						<h3>Sản phẩm liên quan</h3>
+					</div>
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="owl-carousel-3">
+						<div class="imagebox style4" th:each="pd: ${listpdCorrelative}">
+							<div class="box-image">
+								<a th:href="@{|/product/productdetail/${pd.id}|}" title="">
+									<img th:src="@{|/assets/images/product/${pd.mainImage}|}"
+									alt="" height="70px">
+								</a>
+							</div>
+							<br> <br> <br>
+							<!-- /.box-image -->
+							<div class="box-content">
+								<div class="cat-name">
+									<a th:href="@{|?category=${pd.category.id}|}" title="">[[${pd.category.name}]]</a>
+								</div>
+								<div class="product-name">
+									<a th:href="@{|/product/productdetail/${pd.id}|}" title="">[[${pd.name}]]<br />
+									</a>
+								</div>
+								<div class="price" th:if="${pd.discount.discount>0}">
+									<span class="sale">[[${#numbers.formatDecimal(pd.price*(1-(pd.discount.discount/100)),1,
+										'DEFAULT', 0, 'DEFAULT')}]]₫</span> <span class="regular">[[${#numbers.formatDecimal(pd.price,1,
+										'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+								</div>
+								<div class="price" th:unless="${pd.discount.discount>0}">
+									<span class="sale">[[${#numbers.formatDecimal(pd.price,1,
+										'DEFAULT', 0, 'DEFAULT')}]]₫</span>
+								</div>
+							</div>
+							<!-- /.box-content -->
+						</div>
+						<!-- /.imagebox style4 -->
+					</div>
+					<!-- /.owl-carousel-3 -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</section>
+	<!-- /.flat-imagebox style4 -->
+</body>
+</html>
