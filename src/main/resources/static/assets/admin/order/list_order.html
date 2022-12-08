@@ -20,9 +20,9 @@
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col" ng-click="sortType = 'account.username'">Tài khoản User</th>
-										<th scope="col" ng-click="sortType = 'account.fullname'">Họ Tên</th>
-										<th scope="col" ng-click="sortType = 'account.email'">Email</th>
+										<th scope="col" ng-click="sortType = 'users.username'">Tài khoản User</th>
+										<th scope="col" ng-click="sortType = 'fullname' ">Họ Tên</th>
+										<th scope="col" ng-click="sortType = 'users.email'">Email</th>
 										<th scope="col" ng-click="sortType = 'phone'">SĐT</th>
 										<th scope="col" ng-click="sortType = 'address'">Địa chỉ</th>
 										<th scope="col" ng-click="sortType = 'message'">Ghi chú</th>
@@ -37,15 +37,15 @@
 								<tbody>
 									<tr ng-repeat = "(stt,pay) in pager.items | orderBy:sortType:sortReverse | filter:searchName">
 										<td>{{stt+1 }}</td>
-										<td>{{pay.account.username }}</td>
-										<td>{{pay.account.fullname }}</td>
-										<td>{{pay.account.email }}</td>
+										<td>{{pay.users.username }}</td>
+										<td>{{pay.fullname}}</td>
+										<td>{{pay.users.email }}</td>
 										<td>{{pay.phone }}</td>
 										<td>{{pay.address }}</td>
 										<td>{{pay.message }}</td>
 										<td>{{pay.total | number : 0}} VNĐ</td>
-										<td>{{pay.payment == 0 ? 'COD' : 'Thẻ nội địa ATM'}}</td>
-										<td>{{pay.status}}</td>
+										<td>{{pay.payment.name}}</td>
+										<td>{{pay.orderStatus}}</td>
 										<td>{{pay.createDate | date:'dd/MM/yyyy'}}</td>
 										<td>
 											<button class="btn btn-success" ng-click="edit(pay)">

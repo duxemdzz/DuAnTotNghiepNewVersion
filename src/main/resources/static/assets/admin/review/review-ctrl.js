@@ -105,8 +105,8 @@ app.controller("review-ctrl", function($scope, $http) {
 			text: "Xóa đánh giá",
 			icon: 'question',
 			showCancelButton: true,
-			confirmButtonText: 'Yes',
-			cancelButtonText: 'No',
+			confirmButtonText: 'Có',
+			cancelButtonText: 'Không',
 			reverseButtons: true
 		}).then((result) => {
 		if (result.isConfirmed) {

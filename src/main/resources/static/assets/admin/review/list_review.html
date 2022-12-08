@@ -31,7 +31,7 @@
 							<tr ng-repeat="(stt,review) in pager.items | orderBy:sortType:sortReverse | filter:searchName">
 								<td>{{stt+1}}</td>
 								<td>{{review.product.name}}</td>
-								<td>{{review.user.username}}</td>
+								<td>{{review.users.username}}</td>
 								<td>{{review.rate}}</td>
 								<td>{{review.contents.substr(0,20)}}...</td>
 								<td>{{review.voteDate}}</td>

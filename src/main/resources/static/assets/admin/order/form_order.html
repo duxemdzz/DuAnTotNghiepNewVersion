@@ -6,46 +6,44 @@
 					<div class="card-body">
 						<div class="card-title">Cập nhật trạng thái đơn hàng</div>
 						<hr>
+						
+						<div class="form-group row">
+						<div class="col-md-8"></div>
+						<!--  -->
+						<div class="col-md-4"></div>
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="id" >Mã đơn hàng</label>
 								<input ng-model="form.id" type="text" class="form-control"
 									readonly id="id" placeholder="Mã sản phẩm" />
 							</div>
-
+							
 							<div class="form-group">
-								<label for="fullname" >Tên khách hàng</label>
+								<label for="fullname" >Họ và Tên</label>
 								<input type="text" class="form-control" readonly id="fullname"
-									ng-model="form.account.fullname" />
+									ng-model="form.fullname" />
 							</div>
-
+						</div>
+						
+							<div class="col-md-6">
 							<div class="form-group">
-								<label for="address" >Email</label>
+								<label for="email" >Email</label>
 								<input type="text" class="form-control" readonly
-									id="address" ng-model="form.account.email" />
+									id="email" ng-model="form.users.email" />
 							</div>
-
+				
 							<div class="form-group">
 								<label for="phone" >Số điện thoại</label>
 								<input type="text" class="form-control" id="phone"
 									readonly ng-model="form.phone" />
 							</div>
-
-
-							<div class="form-group">
-								<label for="address"  class="col-form-label">Địa chỉ</label>
-								<div>
-									<textarea class="form-control" rows="4" id="address"
-										readonly required="required" ng-model="form.address"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="message" class="col-form-label" >Ghi chú</label>
-								<div>
-									<textarea ng-model="form.message" class="form-control" rows="4"
-										readonly id="message" name="order-mess"></textarea>
-								</div>
-							</div>
-
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<div class="col-md-8"></div>
+						<div class="col-md-4"></div>
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="total" >Tổng tiền</label>
 								<input type="text"  ng-model="form.total | number : 2"
@@ -53,32 +51,46 @@
 									id="total" />
 							</div>
 							<div class="form-group">
-								<label for="input">Phương thức thanh toán</label>
-								<div>
-									<select ng-model="form.payment" class="form-control valid" disabled
-										id="input" aria-invalid="true">
-										<option value="1" >Thẻ nội địa ATM</option>
-										<option value="0">COD</option>
-									</select>
-								</div>
+								<label for="payment" >Phương thức thanh toán</label>
+								<input type="text"  ng-model="form.payment.name"
+									readonly class="form-control"
+									id="payment" />
 							</div>
-							
+						 </div>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="address" >Đại chỉ</label>
+								<input type="text" class="form-control" readonly
+									id="address" ng-model="form.address" />
+							</div>
 							<div class="form-group">
 								<label for="payment">Trạng thái</label>
 								<div>
 									<select class="form-control valid" ng-model="form.status"
 										id="status" aria-invalid="false">
+										<option value="Hủy đơn">Hủy đơn</option>
+										<option value="Chờ xử lí">Chờ xử lí</option>
+										<option value="Chờ vận chuyển">Chờ vận chuyển</option>
+										<option value="Đang vận chuyển">Đang vận chuyển</option>
 										<option value="Đã thanh toán">Đã thanh toán</option>
-										<option value="Chưa thanh toán">Chưa
-											thanh toán</option>
 									</select>
 								</div>
 							</div>
-							<br>
-							<br>
+						</div>
+					</div>
+
+							<div class="form-group">
+								<label for="message" class="col-form-label" >Ghi chú</label>
+								<div>
+									<textarea ng-model="form.message" class="form-control" rows="4"
+										readonly id="message" name="order-mess"></textarea>
+								</div>
+							</div>
+							
 							<div class="form-footer">
 								
-								<button ng-click="update(form)" class="btn btn-success">Cập nhật</button>
+								<button ng-if="form.id != null" ng-click="update(form)" class="btn btn-success">Cập nhật</button>
 
 								<button class="btn btn-dark" ng-click="editod(form.id)">
 									Xem danh sách sản phẩm

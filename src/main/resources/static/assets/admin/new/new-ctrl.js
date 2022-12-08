@@ -98,7 +98,6 @@ app.controller("new-ctrl", function($scope, $http) {
 				timer:'2000'
 			})
 		}else{
-			if(item.id != null){
 			$http.put(`/TechnoShop/rest/news/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
@@ -109,10 +108,6 @@ app.controller("new-ctrl", function($scope, $http) {
 			Swal.fire('Cập nhật thất bại', '', 'error')
 			console.log("Error", error);
 		})
-		}else{
-			Swal.fire('Cập nhật thất bại không tìm thấy id tin tức cần cập nhật!', '', 'warning')
-			console.log("Warning", error);
-		}
 	 }
 	}
 
@@ -130,12 +125,11 @@ app.controller("new-ctrl", function($scope, $http) {
 			text: "Xóa tin tức",
 			icon: 'question',
 			showCancelButton: true,
-			confirmButtonText: 'Yes',
-			cancelButtonText: 'No',
+			confirmButtonText: 'Có',
+			cancelButtonText: 'Không',
 			reverseButtons: true
 		}).then((result) => {
 			if (result.isConfirmed) {
-				if(item.id != null){
 					$http.delete(`/TechnoShop/rest/news/${item.id}`).then(resp => {
 					var index = $scope.items.findIndex(p => p.id == item.id);
 					$scope.items.splice(index, 1);
@@ -146,10 +140,6 @@ app.controller("new-ctrl", function($scope, $http) {
 					Swal.fire('Xóa thất bại', '', 'error')
 					console.log("Error", error);
 				})
-				}else{
-					Swal.fire('Xóa thất bại không tìm thấy id tin tức cần xóa !', '', 'warning')
-					console.log("Warning", error);
-				}
 			}
 		})
 	}

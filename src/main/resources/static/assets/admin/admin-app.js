@@ -8,11 +8,11 @@ app.config(function($routeProvider) {
         })
         .when("/authorize", {
             templateUrl:"/TechnoShop/assets/admin/authority/index.html",
-            controller:"authority-ctrl"
+//           controller:"authority-ctrl"
         })
         .when("/unauthorized", {
             templateUrl:"/TechnoShop/assets/admin/authority/unauthorized.html",
-            controller: "authority-ctrl"
+//            controller: "authority-ctrl"
         })
        .when("/account", {
             templateUrl:"/TechnoShop/assets/admin/account/index.html",
@@ -28,7 +28,7 @@ app.config(function($routeProvider) {
         })
         .when("/report", {
             templateUrl:"/TechnoShop/assets/admin/report/index.html",
-            controller: "report-ctrl"
+//            controller: "report-ctrl"
         })
          .when("/new", {
             templateUrl:"/TechnoShop/assets/admin/new/index.html",

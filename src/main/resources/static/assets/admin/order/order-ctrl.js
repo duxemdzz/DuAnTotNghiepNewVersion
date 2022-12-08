@@ -6,25 +6,26 @@ app.controller("order-ctrl", function($scope, $http) {
 	$scope.sortReverse = false;
 	$scope.searchName = '';
 	$scope.initialize = function() {
-		$http.get("/rest/orders").then(resp => {
+		$http.get("/TechnoShop/rest/order").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate)
 			})
 		})
 	}
+	
 	$scope.editod = function(id) {
 		$(".nav-pills a:eq(2)").tab('show')
-		$http.get(`/rest/orderdetails/${id}`).then(resp => {
+		$http.get(`/TechnoShop/rest/orderDetail/${id}`).then(resp => {
 			$scope.items2 = resp.data;
 		})
 	}
+	
 	$scope.initialize();
 
 	$scope.reset = function() {
 		$(".nav-pills a:eq(1)").tab('show')
 	}
-
 
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
@@ -33,7 +34,7 @@ app.controller("order-ctrl", function($scope, $http) {
 
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/orders/${item.id}`, item).then(resp => {
+		$http.put(`/TechnoShop/rest/order/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			Swal.fire('Cập nhật thành công', '', 'success')
