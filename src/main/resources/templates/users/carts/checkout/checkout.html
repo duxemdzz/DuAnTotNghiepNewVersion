@@ -63,24 +63,7 @@
 								<input ng-value="cart.amount" id="total" type="text"
 									style="visibility: hidden;" />
 							</div>
-							<div>
-								<div class="form-group">
-									<label for="exampleFormControlSelect1">Tỉnh/Thành phố</label> <select
-									class="form-control col-md-3"
-										ng-model="selectedItem" ng-change="SelectTinhThanh(selectedItem)">
-										<option ng-repeat="t in tinhs"
-											ng-selected="selectedItem == t.ProvinceID"
-											value="{{t.ProvinceID}}">{{t.ProvinceName}}</option>
-									</select>
-								</div>
-
-								<div class="form-group">
-									<label for="exampleFormControlSelect1">Quận/huyện</label> <select
-										class="form-control col-md-3">
-										<option ng-value="t.ProvinceName" ng-repeat="t in tinhs">{{t.ProvinceName}}</option>
-									</select>
-								</div>
-							</div>
+							
 							<!-- /.checkout -->
 						</div>
 						<!-- /.box-checkout -->
@@ -271,11 +254,6 @@
 										<input type="radio" id="paypal1" name="radio-cash-2"
 											ng-value="2" ng-model="order.payment.id"> <label
 											for="paypal1">Thẻ ATM</label>
-									</div>
-									<div class="radio-info">
-										<input type="radio" id="momo" name="radio-cash-2" ng-value="3"
-											ng-model="order.payment.id"> <label for="momo">Ví
-											momo</label>
 									</div>
 								</div>
 								<!-- /.btn-radio style2 -->

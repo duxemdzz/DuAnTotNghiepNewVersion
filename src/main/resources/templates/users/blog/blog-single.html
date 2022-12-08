@@ -7,7 +7,7 @@
 </head>
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
 	<div class="boxed">
-
+		<div th:replace="users/loading/loading :: loading"></div>
 		<section id="header" class="header">
 			<th:block th:replace="users/headers/header1 :: header-top"></th:block>
 			<th:block th:replace="users/headers/header2 :: header-middle"></th:block>
@@ -24,8 +24,7 @@
 								<div class="featured-post">
 									<a href="#" title=""> <img
 										th:src="@{|/assets/images/product/${blog.product.mainImage}|}"
-										style="width: 50%"
-										alt="">
+										style="width: 50%" alt="">
 									</a>
 								</div>
 								<!-- /.featured-post -->
@@ -78,7 +77,8 @@
 						<!-- /.post-wrap -->
 					</div>
 					<!-- /.col-md-8 col-lg-9 -->
-					<div class="col-md-4 col-lg-3" style="height: 800px; overflow-y: scroll;">
+					<div class="col-md-4 col-lg-3"
+						style="height: 800px; overflow-y: scroll;">
 						<div class="sidebar left">
 							<div class="widget widget-search">
 								<form action="#" method="get" accept-charset="utf-8">

@@ -53,7 +53,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
 			console.log(error)
 		});
 	}
-	$scope.dataHuyen();
+	//$scope.dataHuyen();
 	$scope.SelectTinhThanh = function(item) {
 		localStorage.setItem("province_id", item);
 		console.log(item)

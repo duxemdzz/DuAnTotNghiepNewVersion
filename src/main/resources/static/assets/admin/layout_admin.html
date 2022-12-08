@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Techno Shop</title>
+
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="/TechnoShop/admin/plugins/fontawesome-free/css/all.min.css">
 
-
-<link rel="shortcut icon" href="/TechnoShop/admin/images/favicon.png"
+<link rel="icon" href="/TechnoShop/images/favicon.png"
 	type="image/x-icon">
 <link href="/TechnoShop/admin/assets/css/pace.min.css" rel="stylesheet" />
 <script src="/TechnoShop/admin/assets/js/pace.min.js"></script>
 <link rel="stylesheet"
 	href="/TechnoShop/admin/assets/plugins/summernote/dist/summernote-bs4.css" />
+<!--<link href="/TechnoShop/admin/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css"
+	rel="stylesheet" />-->
 <link
 	href="/TechnoShop/admin/assets/plugins/simplebar/css/simplebar.css"
 	rel="stylesheet" />
@@ -35,24 +37,17 @@ textarea {
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 	function logout() {
-			 const swalWithBootstrapButtons = Swal.mixin({
-				  customClass: {
-				    confirmButton: 'btn btn-success',
-				    cancelButton: 'btn btn-danger'
-				  },
-				  buttonsStyling: false
-				})
-
-				swalWithBootstrapButtons.fire({
-				  title: 'Bạn muốn đăng xuất phải không?',
-				  text: "Trở về về trang đăng nhập!",
-				  icon: 'question',
-				  showCancelButton: true,
-				  confirmButtonText: 'Yes',
-				  cancelButtonText: 'No',
-				  reverseButtons: true,
-				  timer: 3000
-				}).then((result) => {
+		Swal.fire({
+			 title: 'Bạn muốn đăng xuất phải không?',
+			  text: "Trở về về trang đăng nhập!",
+			  icon: 'question',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Có',
+			  cancelButtonText: 'Không',
+			  reverseButtons: true,
+		}).then((result) => {
 				  if (result.isConfirmed) {
 					  window.location.href = "/TechnoShop/account/logoff";
 			            Swal.fire('Đăng xuất thành công', '', 'success')
@@ -69,11 +64,7 @@ textarea {
 
 <!-- jQuery library -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 <link href="/TechnoShop/assets/css/shopping-cart-app.css"
@@ -168,35 +159,36 @@ textarea {
 						href="javascript:void();"> <i class="icon-menu menu-icon"></i>
 					</a></li>
 				</ul>
-				<ul class="navbar-nav align-items-center right-nav-link"
+				<ul class="navbar-nav ml-auto align-items-center right-nav-link"
 					th:each="acc: ${account}">
-					<li class="nav-item"><a
-						class="nav-link dropdown-toggle dropdown-toggle-nocaret"
-						data-toggle="dropdown" href="#"> <span class="user-profile"><img
-								th:src="@{|/assets/images/avatar/${acc.photo}|}" class="img-circle"
-								alt="user avatar"></span>
+					<li class="nav-item dropdown "><a class="nav-link"
+						data-toggle="dropdown" href="" aria-expanded=""> <span
+							class="user-profile"><img
+								th:src="@{|/assets/images/avatar/${acc.photo}|}"
+								class="img-circle" alt="user avatar"></span>
 					</a>
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li class="dropdown-item user-details"><a
-								href="javaScript:void();">
-									<div class="media">
-										<div class="avatar">
-											<img class="align-self-start mr-3"
-												th:src="@{|/assets/images/avatar/${acc.photo}|}" alt="user avatar">
-										</div>
-										<div class="media-body">
-											<h6 class="mt-2 user-title">Techno Shop</h6>
-											<b> Họ Tên:<span id="tkdaglg"> [[${acc.username}]]</span></b>
-											<span id="quyendaglg" style="visibility: hidden;">[[${quyen}]]</span>
-										</div>
-									</div>
+						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right "
+							style="left: inherit; right: 0px;">
+							<a class="dropdown-item dropdown-header" id="tkdaglg">Tài
+								Khoản: [[${acc.username}]]</a> <a id="quyendaglg" hidden>[[${quyen}]]</a>
+							<div class="dropdown-divider"></div>
+							<a href="/TechnoShop/account/edit" class="dropdown-item"> <i
+								class="far fa-id-card"></i> Thông Tin Cá Nhân
+
+							</a>
+							<div class="dropdown-divider"></div>
+							<a href="/TechnoShop/account/repass" class="dropdown-item"> <i
+								class="fas fa-unlock-alt"></i></i> Đổi Mật Khẩu
+
+							</a>
+							<div class="dropdown-divider"></div>
+							<a href="javascript:logout()" class="dropdown-item"> <i
+								class="fas fa-sign-out-alt"></i> Đăng Xuất
+
 							</a></li>
 
-							<li class="dropdown-divider"></li>
-							<li class="dropdown-item"><i class="icon-power mr-2"></i><a
-								href="javascript:logout()"> Đăng xuất</a></li>
-						</ul></li>
 				</ul>
+
 			</nav>
 		</header>
 		<!-- //header -->
@@ -241,6 +233,12 @@ textarea {
 				</ul>
 			</div>
 		</div>
+
+		<!-- Thêm Mới -->
+		<!-- AdminLTE App -->
+		<script src="/TechnoShop/admin/dist/js/adminlte.js"></script>
+
+
 		<script src="/TechnoShop/admin/assets/js/jquery.min.js"></script>
 		<!--<script src="/TechnoShop/admin/assets/js/popper.min.js"></script>-->
 		<script src="/TechnoShop/admin/assets/js/bootstrap.min.js"></script>
@@ -268,42 +266,6 @@ textarea {
 		<script src="/TechnoShop/assets/admin/general/general-ctrl.js"></script>
 		<script src="/TechnoShop/assets/admin/connect/connect-ctrl.js"></script>
 		<script src="/TechnoShop/assets/admin/battery/battery-ctrl.js"></script>
-
-
-		<!-- vừa thêm -->
-		<script src="/TechnoShop/admin/plugins/jquery/jquery.min.js"></script>
-
-		<!-- jQuery UI 1.11.4 -->
-		<script src="/TechnoShop/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-
-		<!-- Bootstrap 4 -->
-		<script
-			src="/TechnoShop/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- ChartJS -->
-		<script src="/TechnoShop/admin/plugins/chart.js/Chart.min.js"></script>
-
-		<script src="/TechnoShop/admin/plugins/sparklines/sparkline.js"></script>
-
-		<!-- jQuery Knob Chart -->
-		<script src="/TechnoShop/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
-		<!-- daterangepicker -->
-		<script src="/TechnoShop/admin/plugins/moment/moment.min.js"></script>
-		<script
-			src="/TechnoShop/admin/plugins/daterangepicker/daterangepicker.js"></script>
-		<!-- Tempusdominus Bootstrap 4 -->
-		<script
-			src="/TechnoShop/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-		<!-- Summernote -->
-		<script
-			src="/TechnoShop/admin/plugins/summernote/summernote-bs4.min.js"></script>
-		<!-- overlayScrollbars -->
-		<script
-			src="/TechnoShop/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-		<!-- AdminLTE App -->
-		<script src="/TechnoShop/admin/dist/js/adminlte.js"></script>
-		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-		<script src="/TechnoShop/admin/dist/js/pages/dashboard.js"></script>
 	</div>
 </body>
 </html>
