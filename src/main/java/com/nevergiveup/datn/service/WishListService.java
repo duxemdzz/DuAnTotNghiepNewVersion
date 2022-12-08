@@ -10,4 +10,5 @@ public interface WishListService {
 	public WishList create(WishList wishlist);
 	public WishList update(WishList wishlist);
 	public void delete(Integer id);
+	List<WishList> findWishListByUsername(String username);
 }

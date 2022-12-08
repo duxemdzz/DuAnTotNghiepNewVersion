@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nevergiveup.datn.entity.Cart;
 import com.nevergiveup.datn.entity.WishList;
 import com.nevergiveup.datn.service.WishListService;
 
@@ -31,9 +32,9 @@ public class WishListRestController {
 		return service.findAll();
 	}
 	
-	@GetMapping("{id}")
-	public WishList getOne(@PathVariable("id") Integer id) {
-		return service.findById(id);
+	@GetMapping("{username}")
+	public List<WishList> getOne(@PathVariable("username") String usernanme) {
+		return service.findWishListByUsername(usernanme);
 	}
 	
 	@PostMapping

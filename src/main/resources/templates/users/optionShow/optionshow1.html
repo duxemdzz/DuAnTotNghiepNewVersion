@@ -95,9 +95,9 @@
 											th:if="${pd.category.id =='mobile' and pd.configPhone.size != 0 }">
 											<img th:src="@{/assets/images/icons/compare.png}" alt="">So
 											sánh
-										</a> <a href="" class="wishlist" title=""> <img
-											th:src="@{/assets/images/icons/wishlist.png}" alt=""
-											th:attr="ng-click=@{|cart.addWishList(${pd.id})|}">Yêu
+										</a> <a th:attr="ng-click=@{|wishlist.addWishListItem(${pd.id})|}"
+											class="wishlist" title=""> <img
+											th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
 											thích
 										</a>
 									</div>
@@ -186,7 +186,8 @@
 											class="compare" title="" th:if="${pd.category.id =='laptop'}">
 											<img th:src="@{/assets/images/icons/compare.png}" alt="">So
 											sánh
-										</a> <a href="" class="wishlist" title=""> <img
+										</a> <a th:attr="ng-click=@{|wishlist.addWishListItem(${pd.id})|}"
+											class="wishlist" title=""> <img
 											th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
 											thích
 										</a>
@@ -276,7 +277,8 @@
 											th:if="${pd.category.id =='tablet' and pd.configPhone.size != 0 }">
 											<img th:src="@{/assets/images/icons/compare.png}" alt="">So
 											sánh
-										</a> <a href="" class="wishlist" title=""> <img
+										</a> <a th:attr="ng-click=@{|wishlist.addWishListItem(${pd.id})|}"
+											class="wishlist" title=""> <img
 											th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
 											thích
 										</a>
@@ -361,7 +363,8 @@
 										</a>
 									</div>
 									<div class="compare-wishlist">
-										<a href="" class="wishlist" title=""> <img
+										<a th:attr="ng-click=@{|wishlist.addWishListItem(${pd.id})|}"
+											class="wishlist" title=""> <img
 											th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
 											thích
 										</a>

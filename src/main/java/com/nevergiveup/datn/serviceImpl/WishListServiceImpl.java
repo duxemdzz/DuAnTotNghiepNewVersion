@@ -40,4 +40,9 @@ public class WishListServiceImpl implements WishListService {
 
 	}
 
+	@Override
+	public List<WishList> findWishListByUsername(String username) {
+		return dao.findWishListByUsername(username);
+	}
+
 }

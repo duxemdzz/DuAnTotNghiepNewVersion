@@ -815,7 +815,7 @@
 
 		if ((this.drag.distance > 8 || this.drag.distance < -8)) {
 			if (ev.preventDefault !== undefined) {
-				ev.preventDefault();
+				//ev.preventDefault();
 			} else {
 				ev.returnValue = false;
 			}

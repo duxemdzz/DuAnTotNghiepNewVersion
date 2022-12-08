@@ -25,7 +25,13 @@
 							<div class="title">
 								<h3>Sản phẩm yêu thích</h3>
 							</div>
-							<div class="wishlist-content">
+							<div>
+								<span ng-if="wishlist.wishlists.length == 0"
+									class="message-account"> Chưa có sản phẩm yêu thích nào!
+								</span>
+							</div>
+							<div class="wishlist-content"
+								ng-if="wishlist.wishlists.length != 0">
 								<table class="table-wishlist">
 									<thead>
 										<tr>
@@ -36,52 +42,56 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="wl: ${listwl}">
+										<tr ng-repeat="wl in wishlist.wishlists">
 											<td>
 												<div class="delete">
-													<a href="#" title=""><img
+													<a th:attr="ng-click=@{|wishlist.removeWishlistId(wl.id)|}"
+														title=""><img
 														th:src="@{/assets/images/icons/delete.png}" alt=""></a>
 												</div>
 												<div class="product">
 													<div class="image">
-														<a th:href="@{|/product/productdetail/${wl.product.id}|}" title="">
-															<img
-															th:src="@{|/assets/images/product/${wl.product.mainImage}|}"
+														<a
+															ng-href="/TechnoShop/product/productdetail/{{wl.product.id}}"
+															title=""> <img
+															ng-src="/TechnoShop/assets/images/product/{{wl.product.mainImage}}"
 															alt="">
 														</a>
 													</div>
-													<div class="name">[[${wl.product.name}]]</div>
+													<div class="name nanme-wishlist" >{{wl.product.name}}</div>
 												</div>
 											</td>
 											<td>
-												<div class="price"
-													th:if="${wl.product.discount.discount > 0}">[[${#numbers.formatDecimal(wl.product.price*(1-(wl.product.discount.discount/100)),1,
-													'DEFAULT', 0, 'DEFAULT')}]]đ</div>
-												<div class="price"
-													th:unless="${wl.product.discount.discount > 0}">[[${#numbers.formatDecimal(wl.product.price,1,
-													'DEFAULT', 0, 'DEFAULT')}]]đ</div>
+												<div class="price" ng-if="wl.product.discount.discount > 0">{{wl.product.price*(1-(wl.product.discount.discount/100))
+													| number : 0}}₫</div>
+												<div class="price" ng-if="wl.product.discount.discount <= 0">{{wl.product.price
+													| number : 0}}₫</div>
 											</td>
 											<td>
 												<div class="status-product-success"
-													th:if="${wl.product.avaliable}">
+													ng-if="wl.product.avaliable === true">
 													<span>Còn hàng</span>
 												</div>
 												<div class="status-product"
-													th:unless="${wl.product.avaliable}">
+													ng-if="wl.product.avaliable === false">
 													<span>Hết hàng</span>
 												</div>
 											</td>
 											<td>
-												<div class="add-cart" th:if="${wl.product.avaliable}">
-													<a href="#" title=""> <img
+												<div class="add-cart" ng-if="wl.product.avaliable === true">
+													<a href=""
+														ng-click="cart.addCartItem(wl.product.id)"
+														title=""> <img
 														th:src="@{/assets/images/icons/add-cart.png}" alt="">Thêm
 														giỏ hàng
 													</a>
 												</div>
-												<div class="add-cart" th:unless="${wl.product.avaliable}">
-													<a href="#" title=""> <img
-														th:src="@{/assets/images/icons/delete.png}" alt="">Xóa khỏi
-														đây
+												<div class="add-cart"
+													ng-if="wl.product.avaliable === false ">
+													<a ng-click="wishlist.removeWishlistId(wl.id)"
+														title=""> <img
+														th:src="@{/assets/images/icons/delete.png}" alt="">Xóa
+														khỏi đây
 													</a>
 												</div>
 											</td>
@@ -101,6 +111,7 @@
 			</div>
 			<!-- /.container -->
 		</section>
+		<input type="hidden" id="soluong" value="1">
 		<!-- /.flat-wishlish -->
 		<th:block th:replace="users/footers/footer :: footer"></th:block>
 	</div>

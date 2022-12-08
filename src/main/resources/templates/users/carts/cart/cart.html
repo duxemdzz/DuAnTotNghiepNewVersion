@@ -23,7 +23,9 @@
 						<div class="flat-row-title style1">
 							<h3>Giỏ hàng</h3>
 						</div>
-						<div class="table-cart">
+						<span ng-if="cart.items.length == 0"
+									class="message-account"> Chưa có sản phẩm nào! </span>
+						<div class="table-cart" ng-if="cart.items.length != 0">
 							<table>
 								<thead>
 									<tr>
@@ -81,7 +83,7 @@
 						<!-- /.table-cart -->
 					</div>
 					<!-- /.col-lg-8 -->
-					<div class="col-lg-4">
+					<div class="col-lg-4" ng-if="cart.items.length != 0">
 						<div class="cart-totals">
 							<h3>Thông tin giỏ hàng</h3>
 							<form action="#" method="get" accept-charset="utf-8">

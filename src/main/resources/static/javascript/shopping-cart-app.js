@@ -892,69 +892,44 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
 	$scope.wishlist = {
 		wishlists: [],
 		// Thêm wishlist với id product
-		addWishItem(id) {
-			var item = this.items.find(item => item.product.id == id)
+		addWishListItem(id) {
+			var item = this.wishlists.find(item => item.product.id == id)
 			// sp !=null
 			if (item) {
-				item.quantity = item.quantity + Number(qty);
-				var json = localStorage.getItem("user");
-				var username = JSON.parse(json).username;
-				$http.get(`/TechnoShop/rest/cart/${username}`).then(response => {
-					$http.get(`/TechnoShop/rest/cartItem/${response.data.id}/${id}`).then(responseChild => {
-						$http.put(`/TechnoShop/rest/cartItem/${responseChild.data.id}`, {
-							"id": responseChild.data.id,
-							"product": { "id": id },
-							"user": { "username": username },
-							"create": new Date()
-						}).then(resp => {
-							console.log(resp.data)
-							this.saveCart();
-							Swal.fire({
-								icon: 'success',
-								title: 'Đã thêm vào sản phẩm yêu thích!',
-								type: 'success',
-								timer: 1500
+				Swal.fire({
+					icon: 'error',
+					title: 'Sản phẩm này đã có trong trang yêu thích',
+					type: 'error',
+					timer: 3000
 
-							});
-
-						}).catch(error => {
-							console.log(error)
-						});
-					})
-				})
+				});
 
 			} else {
 				// sp ==null
 				var json = localStorage.getItem("user");
 				var username = JSON.parse(json).username;
-				qty = document.getElementById('soluong').value;
-				$http.get(`/TechnoShop/rest/cart/${username}`).then(response => {
-					$http.post(`/TechnoShop/rest/cartItem`, {
-						"product": { "id": id },
-						"user": { "username": username },
-						"create": new Date()
-					}).then(resp => {
-						console.log(resp.data);
-						this.saveCart();
-						$scope.cart.loadCartByUsername();
-						Swal.fire({
-							icon: 'success',
-							title: 'Đã thêm vào sản phẩm yêu thích!',
-							type: 'success',
-							timer: 1500
+				$http.post(`/TechnoShop/rest/wishList`, {
+					"product": { "id": id },
+					"users": { "username": username },
+					"createDate": new Date()
+				}).then(response => {
+					Swal.fire({
+						icon: 'success',
+						title: 'Đã thêm vào danh sách yêu thích',
+						type: 'success',
+						timer: 1500
 
-						});
-					}).catch(error => {
-						console.log(error)
 					});
+				}).catch(err => {
+					console.log(err)
 				})
 
 			}
 		},// End Thêm cart với id product
 
 		// Xóa CartItem với id cartItem
-		removeWishlist(id) {
-			var index = this.items.findIndex(item =>
+		removeWishlistId(id) {
+			var index = this.wishlists.findIndex(item =>
 				item.id = id
 			);
 			swal.fire({
@@ -969,9 +944,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
 				reverseButtons: true
 			}).then((result) => {
 				if (result.isConfirmed) {
-					$http.delete(`/TechnoShop/rest/cartItem/${id}`).then(resp => {
-						this.items.splice(index, 1);
+					$http.delete(`/TechnoShop/rest/wishList/${id}`).then(resp => {
+						this.wishlists.splice(index, 1);
 						this.saveWishlist();
+						this.loadWishlistByUsername();
 						console.log(resp.data)
 					}).catch(err => {
 						console.log(err)
@@ -982,25 +958,23 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
 
 		},// End Xóa Cart với id cartItem
 
-		// save Cart
+		// save Wishlists
 		saveWishlist() {
 			var json = JSON.stringify(angular.copy(this.wishlists));
 		},// save Cart
 
 
-		// load Cart lên
+		// load Wishlists lên
 		loadWishlistByUsername() {
 			var json = localStorage.getItem("user");
 			var username = JSON.parse(json).username;
 			if (username) {
-				$http.get(`/TechnoShop/rest/cart/${username}`).then(response => {
-					$http.get(`/TechnoShop/rest/cartItem/${response.data.id}`).then(resp => {
-						this.items = resp.data ? resp.data : [];
-					})
-
+				$http.get(`/TechnoShop/rest/wishList/${username}`).then(resp => {
+					this.wishlists = resp.data ? resp.data : [];
 				})
 			}
 		},// save Cart
 
 	}
+	$scope.wishlist.loadWishlistByUsername();
 }); 

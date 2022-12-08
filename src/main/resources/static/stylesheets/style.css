@@ -3541,3 +3541,10 @@ a.pinterest .front {
   	overflow: hidden; 
   	display: -webkit-box;
 }
+.nanme-wishlist{
+	width: 100px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+}

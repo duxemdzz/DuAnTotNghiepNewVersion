@@ -99,9 +99,7 @@ public class ProductController {
 	}
 
 	@RequestMapping("/product/wishlist")
-	public String wishlist(Model model) {
-		List<WishList> list = wishLishService.findAll();
-		model.addAttribute("listwl", list);
+	public String wishlist() {
 		return "users/products/wishList/wishlist";
 	}
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nevergiveup.datn.dao.UtilityDao;
 import com.nevergiveup.datn.entity.Utility;
+import com.nevergiveup.datn.entity.WishList;
 import com.nevergiveup.datn.service.UtilityService;
 
 @Service
@@ -42,7 +43,6 @@ public class UtilityServiceImpl implements UtilityService {
 
 	@Override
 	public List<Utility> findAllByCategory(String id) {
-		// TODO Auto-generated method stub
 		return dao.findAllByCategory(id);
 	}
 

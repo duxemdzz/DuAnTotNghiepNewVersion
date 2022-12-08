@@ -20,7 +20,9 @@
 				<div class="row">
 					<div class="col-md-7">
 						<h3 class="title">Thanh toán</h3>
-						<div class="box-checkout">
+						<span ng-if="cart.items.length == 0" class="message-account">
+							Chưa có sản phẩm nào để thanh toán! </span>
+						<div class="box-checkout" ng-if="cart.items.length != 0">
 							<div class="classDivBig" ng-if="userAddress.length === 0">
 								<div class="classDivBig1">
 									<br>
@@ -63,7 +65,7 @@
 								<input ng-value="cart.amount" id="total" type="text"
 									style="visibility: hidden;" />
 							</div>
-							
+
 							<!-- /.checkout -->
 						</div>
 						<!-- /.box-checkout -->
@@ -194,7 +196,7 @@
 						</div>
 					</div>
 					<!-- /.col-md-7 -->
-					<div class="col-md-5">
+					<div class="col-md-5" ng-if="cart.items.length != 0">
 						<div class="cart-totals style2">
 							<h3>Thông tin đơn hàng của bạn</h3>
 							<form action="#" method="get" accept-charset="utf-8">
@@ -207,9 +209,9 @@
 									</thead>
 									<tbody>
 										<tr ng-repeat="item in cart.items">
-											<td>{{item.product.name.substr(0,20)}}... <br> <span
-												id="orange">Giảm {{item.product.discount.discount}}%
-											</span>
+											<td class="name-product">{{item.product.name}}
+												<br> <span id="orange">Giảm
+													{{item.product.discount.discount}}% </span>
 											</td>
 											<td><span>{{item.quantity}}</span> x
 												{{item.product.price | number : 0}}₫</td>
@@ -246,14 +248,14 @@
 								<div class="btn-radio style2">
 
 									<div class="radio-info">
-										<input type="radio" id="cash-delivery" name="radio-cash-2"
+										<input type="radio" id="cash-delivery" name="cash-delivery"
 											ng-value="1" ng-model="order.payment.id" ng-checked="true">
 										<label for="cash-delivery">Thanh toán khi nhận hàng</label>
 									</div>
 									<div class="radio-info">
-										<input type="radio" id="paypal1" name="radio-cash-2"
-											ng-value="2" ng-model="order.payment.id"> <label
-											for="paypal1">Thẻ ATM</label>
+										<input type="radio" id="paypal1" name="paypal1" ng-value="2"
+											ng-model="order.payment.id"> <label for="paypal1">Thẻ
+											ATM</label>
 									</div>
 								</div>
 								<!-- /.btn-radio style2 -->

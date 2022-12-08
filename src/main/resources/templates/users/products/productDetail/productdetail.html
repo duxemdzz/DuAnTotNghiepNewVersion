@@ -129,7 +129,9 @@
 													class="compare" title=""
 													th:unless="${pd.category.id=='accessory'}"><img
 													th:src="@{/assets/images/icons/compare.png}" alt="">So
-													sánh</a> <a href="compare.html" class="wishlist" title=""><img
+													sánh</a> <a href=""
+													th:attr="ng-click=@{|wishlist.addWishListItem(${pd.id})|}"
+													class="wishlist" title=""><img
 													th:src="@{/assets/images/icons/wishlist.png}" alt="">Yêu
 													thích</a>
 											</div>
@@ -213,8 +215,7 @@
 														</tr>
 														<tr>
 															<td>Hệ điều hành:</td>
-															<td
-																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.operatingSystem}]]</td>
+															<td>[[${pdconfig.operatingSystem}]]</td>
 
 														</tr>
 														<tr
@@ -228,11 +229,8 @@
 															<td>[[${pdconfig.cameraAfter}]]</td>
 														</tr>
 														<tr>
-															<td
-																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">Chip:</td>
-															<td
-																th:if="${pd.category.id=='mobile' or pd.category.id=='tablet'}">[[${pdconfig.cpu}]]</td>
-															<td th:if="${pd.category.id=='laptop'}">CPU:</td>
+															<td>Chip:</td>
+															<td>[[${pdconfig.cpu}]]</td>
 
 														</tr>
 														<tr
@@ -270,7 +268,8 @@
 														</tr>
 														<tr th:if="${pd.category.id=='laptop'}">
 															<td>Cổng kết nối:</td>
-															<td></td>
+															<td>[[${pdconfig.connect.chargePort}]] x
+																[[${pdconfig.connect.headphoneJack}]]</td>
 														</tr>
 														<tr th:if="${pd.category.id=='laptop'}">
 															<td>Thiết kế:</td>
