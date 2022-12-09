@@ -35,7 +35,6 @@ public class News implements Serializable{
 	Date updateDate;
 	@ManyToOne @JoinColumn(name = "User_id")
 	private Users users;
-	@JsonIgnore
 	@ManyToOne @JoinColumn(name = "Product_id")
 	Product product;
 }
