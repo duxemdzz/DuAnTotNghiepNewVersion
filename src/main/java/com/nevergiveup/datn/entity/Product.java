@@ -64,7 +64,8 @@ public class Product implements Serializable{
 	Category category;
 	@ManyToOne
 	@JoinColumn(name = "Brand_id")
-	Brand brand;	
+	Brand brand;
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	List<News> news;
 	@JsonIgnore
